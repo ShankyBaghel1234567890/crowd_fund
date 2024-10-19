@@ -25,6 +25,13 @@ class RedirectIfAuthenticated
             }
         }
 
+        if (Auth::guard('auth')->check()) {
+            return redirect()->route('admin.dashboard');
+        }
+        if (Auth::guard('auth')->check()) {
+            return redirect()->route('user.dashboard');
+        }
+
         return $next($request);
     }
 }
