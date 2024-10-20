@@ -133,8 +133,33 @@ class CampaignController extends Controller
             $campaigns->deadline = $request->deadline;
             $campaigns->status = $request->status;
             $campaigns->save();
+            $oldImage = $campaigns->image;
+
+            //save image here
+            if(!empty($request->image_id)){
+                $tempImage = TempImage::find($request->image_id);
+                $extArray = explode('.',$tempImage->name);
+                $ext = last($extArray);
+
+                $newImageName = $campaigns->id.'.'.$ext;
+                $sPath = public_path().'/temp/'.$tempImage->name;
+                $dPath = public_path().'/uploads/campaigns/'.$newImageName;
+                File::copy($sPath,$dPath);
+
+            //     //Generate image thumbnail
+            //     // $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
+            //     // $img = Image::make($sPath);
+            //     // $img->resize(450, 600);
+            //     // $img->save($dPath);
+
+                $campaigns->image = $newImageName;
+                $campaigns->save();
+
+                File::delete(public_path().'uploads/campaigns/'.$oldImage);
+            }
 
             
+        
 
 
             $request->session()->flash('success','Campaign updated successfully');

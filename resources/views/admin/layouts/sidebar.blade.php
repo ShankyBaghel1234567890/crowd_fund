@@ -32,7 +32,7 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link">
+								<a href="{{route('galleries.index')}}" class="nav-link">
 									<!-- <i class="nav-icon fas fa-tag"></i> -->
 									<i class="fas fa-image nav-icon"></i>
 									<p>Gallery</p>

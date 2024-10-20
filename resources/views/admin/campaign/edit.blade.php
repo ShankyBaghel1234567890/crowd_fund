@@ -82,7 +82,8 @@
                                                     <div class="dz-message needsclick">
                                                         <br>Drop files here or click to upload.<br><br>
                                                     </div>
-                                                </div>	
+                                                </div>
+                                                	
                                             </div>
                                         </div>
                                        									

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CampaignController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\TempImagesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
@@ -75,6 +76,14 @@ Route::group(['middleware' => 'auth'],function(){
 
         //temp-images route
         Route::post('/upload-temp-images',[TempImagesController::class,'create'])->name('temp-images.create');
+
+        //Gallery Route
+        Route::get('/galleries',[GalleryController::class,'index'])->name('galleries.index');
+        Route::get('/galleries/create',[GalleryController::class,'create'])->name('galleries.create');
+        Route::post('/galleries',[GalleryController::class,'store'])->name('galleries.store');
+        Route::get('/galleries/{gallery}/edit',[GalleryController::class,'edit'])->name('galleries.edit');
+        Route::put('/galleries/{gallery}',[GalleryController::class,'update'])->name('galleries.update');
+        Route::delete('/galleries/{gallery}',[GalleryController::class,'destroy'])->name('galleries.delete');
 
     });
 
