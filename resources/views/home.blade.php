@@ -4,52 +4,72 @@
 
 
 
-    <div class="slider-area">
-        <div class="slider-active">
-          
-            <div class="single-slider slider-height d-flex align-items-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-10">
-                            <div class="hero__caption">
-                                <h1 data-animation="fadeInUp" data-delay=".6s">Our Helping to<br> the world.</h1>
-                                <P data-animation="fadeInUp" data-delay=".8s" >It is a platform that enables individuals or groups to raise funds for specific projects, causes, or ventures by collecting small contributions from a large number of people.</P>
-                                
-                                <div class="hero__btn">
-                                    <a href="industries.html" class="btn hero-btn mb-10"  data-animation="fadeInLeft" data-delay=".8s">Donate</a>
-                                    <a href="industries.html" class="cal-btn ml-15" data-animation="fadeInRight" data-delay="1.0s">
-                                        <i class="flaticon-null"></i>
-                                        <p>+91 9336568268</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+<div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+        
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="childb.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Welcome to Crowd Funded Organisation</h5>
+                        <p>Effortlessly Have Your Own World Class Professional Fund Raising Platform</p>
+                    </div>
+                </div>
+        
+                <div class="carousel-item">
+                    <img src="childd.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Welcome to Crowd Funded Organisation</h5>
+                        <p>Effortlessly Have Your Own World Class Professional Fund Raising Platform</p>
+                    </div>
+                </div>
+        
+                <div class="carousel-item">
+                    <img src="childf.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Welcome to Crowd Funded Organisation</h5>
+                        <p>Effortlessly Have Your Own World Class Professional Fund Raising Platform</p>
                     </div>
                 </div>
             </div>
-           
-            <div class="single-slider slider-height d-flex align-items-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-10">
-                            <div class="hero__caption">
-                                <h1 data-animation="fadeInUp" data-delay=".6s">Our Helping to<br> the world.</h1>
-                                <P data-animation="fadeInUp" data-delay=".8s" >It is a platform that enables individuals or groups to raise funds for specific projects, causes, or ventures by collecting small contributions from a large number of people.</P>
-                               
-                                <div class="hero__btn">
-                                    <a href="industries.html" class="btn hero-btn mb-10"  data-animation="fadeInLeft" data-delay=".8s">Donate</a>
-                                    <a href="industries.html" class="cal-btn ml-15" data-animation="fadeInRight" data-delay="1.0s">
-                                        <i class="flaticon-null"></i>
-                                        <p>+91 9336568268</p>
-                                    </a>
+        
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+        
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+        </div>
+
+        <div class="slider-area">
+            <div class="slider-active">
+                <div class="single-slider d-flex align-items-center justify-content-center">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-6 col-lg-6 col-md-8 col-sm-10">
+                                <div class="hero__caption text-center">
+                                    <h1 data-animation="fadeInUp" data-delay=".6s">Our Helping to<br> the world.</h1>
+                                    <p data-animation="fadeInUp" data-delay=".8s">It is a platform that enables individuals or groups to raise funds for specific projects, causes, or ventures by collecting small contributions from a large number of people.</p>
+                                    <div class="hero__btn d-flex justify-content-center">
+                                        <a href="" class="btn hero-btn mb-10" data-animation="fadeInLeft" data-delay=".8s">Donate</a>
+                                        <a href="" class="cal-btn ml-15" data-animation="fadeInRight" data-delay="1.0s">
+                                            <i class="flaticon-null"></i>
+                                            <p>+91 9336568268</p>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
             </div>
         </div>
-    </div>
+           
   
     <div class="service-area section-padding30">
         <div class="container">
@@ -230,31 +250,42 @@
                 <div class="col-xl-7 col-lg-9 col-md-10 col-sm-12">
                   
                     <div class="section-tittle text-center mb-80">
-                        <span> What we are boing </span>
+                        <span> What we are doing </span>
                         <h2> We arrange many social events for charity donations </h2>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center">
+                @if (getCampaigns()->isNotEmpty())
+                @foreach (getCampaigns() as $campaign)
+                
+                
+                
                 <div class="col-lg-9 col-md-12">
                    
                     <div class="single-job-items mb-30">
                         <div class="job-items">
                             <div class="company-img">
-                                <a href="#"><img src="assets/img/gallery/socialEvents1.png" alt=""></a>
+                                @if ($campaign->image !="")
+                                <a href="#"><img src="{{asset('uploads/campaigns/'.$campaign->image)}}" alt=""></a>
+                                @else
+                                <a href="#"><img src="assets/img/gallery/socialEvents2.png" alt=""></a>
+                                @endif
+                                
                             </div>
                             <div class="job-tittle">
-                                <a href="#"><h4> Help for Children </h4></a>
+                                <a href="#"><h4> {{$campaign->name}} </h4></a>
                                 <ul>
-                                    <li><i class="far fa-clock"></i>8:30 - 9:30am</li>
-                                    <li><i class="fas fa-sort-amount-down"></i> 18.01.2021 </li>
-                                    <li><i class="fas fa-map-marker-alt"></i> Athens, Greece </li>
+                                    <li><i class="far fa-clock"></i>{{$campaign->description}}</li>
+                                    
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9 col-md-12">
+                @endforeach
+                @endif
+                <!-- <div class="col-lg-9 col-md-12">
                    
                     <div class="single-job-items mb-30">
                         <div class="job-items">
@@ -289,7 +320,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -311,11 +342,7 @@
                         <div class="team-img">
                             <img src="assets/img/gallery/team1.png" alt="">
                            
-                            <ul class="team-social">
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fas fa-globe"></i></a></li>
-                            </ul>
+                            
                         </div>
                         <div class="team-caption">
                             <h3><a href="instructor.html">Yogendra singh</a></h3>
@@ -328,11 +355,7 @@
                         <div class="team-img">
                             <img src="assets/img/gallery/team2.png" alt="">
                             
-                            <ul class="team-social">
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fas fa-globe"></i></a></li>
-                            </ul>
+                            
                         </div>
                         <div class="team-caption">
                             <h3><a href="instructor.html">Shaily Martin</a></h3>
@@ -345,11 +368,7 @@
                         <div class="team-img">
                             <img src="assets/img/gallery/team3.png" alt="">
                            
-                            <ul class="team-social">
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fas fa-globe"></i></a></li>
-                            </ul>
+                            
                         </div>
                         <div class="team-caption">
                             <h3><a href="instructor.html">Khushi Kundra</a></h3>
@@ -362,11 +381,7 @@
                         <div class="team-img">
                             <img src="assets/img/gallery/team4.png" alt="">
                             
-                            <ul class="team-social">
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fas fa-globe"></i></a></li>
-                            </ul>
+                            
                         </div>
                         <div class="team-caption">
                             <h3><a href="instructor.html">Abhishek Srivastava</a></h3>

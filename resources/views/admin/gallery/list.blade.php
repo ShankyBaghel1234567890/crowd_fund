@@ -20,7 +20,7 @@
 				<section class="content">
 					<!-- Default box -->
 					<div class="container-fluid">
-                        @include('auth.message')
+                        @include('account.message')
 						<div class="card">
 							<form action="" method="get">
                                 <div class="card-header">

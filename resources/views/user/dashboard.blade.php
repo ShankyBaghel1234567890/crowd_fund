@@ -17,37 +17,37 @@
 				</section>
 				<!-- Main content -->
 				<section class="content">
-					<!-- Default box -->
 					<div class="container-fluid">
-						<div class="row">
-							<div class="col-lg-4 col-6">							
-								<div class="small-box card">
-									<div class="inner">
-										<h3>150</h3>
-										<p>Total Campaign</p>
-									</div>
-									<div class="icon">
-										<i class="ion ion-bag"></i>
-									</div>
-									<a href="#" class="small-box-footer text-dark">More info <i class="fas fa-arrow-circle-right"></i></a>
-								</div>
+					<!-- Small boxes (Stat box) -->
+					<div class="row">
+						<div class="col-12 col-sm-6 col-md-4 offset-md-2">
+						<div class="info-box mb-3">
+							<span class="info-box-icon bg-warning elevation-1"><i class="fas fa-flag"></i></span>
+			
+							<div class="info-box-content">
+							<span class="info-box-text">Total Campaign</span>
+							<span class="info-box-number">10</span>
 							</div>
-							
-							<div class="col-lg-4 col-6">							
-								<div class="small-box card">
-									<div class="inner">
-										<h3>50</h3>
-										<p>Total Donation</p>
-									</div>
-									<div class="icon">
-										<i class="ion ion-stats-bars"></i>
-									</div>
-									<a href="#" class="small-box-footer text-dark">More info <i class="fas fa-arrow-circle-right"></i></a>
-								</div>
-							</div>
+							<!-- /.info-box-content -->
 						</div>
-					</div>					
-					<!-- /.card -->
+						<!-- /.info-box -->
+						</div>
+						<div class="col-12 col-sm-6 col-md-4">
+						<div class="info-box mb-3">
+							<span class="info-box-icon bg-danger elevation-1"><i class="fas fa-heart"></i></span>
+			
+							<div class="info-box-content">
+							<span class="info-box-text">Total Donations</span>
+							<span class="info-box-number">10</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+						</div>
+						<!-- ./col -->
+					</div>
+
+					</div><!-- /.container-fluid -->
 				</section>
 				<!-- /.content -->
 @endsection

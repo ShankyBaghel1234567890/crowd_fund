@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
     public function index(){
-        return view('auth.login');
+        return view('account.login');
     }
 
     public function authenticate(Request $request){
@@ -39,35 +39,48 @@ class LoginController extends Controller
                 }
             }
             
-                return redirect()->route('auth.login')
+                return redirect()->route('login')
                 ->with('error','Either Email/Password is incorrect')
                 ->withInput($request->only('email'));
 
         }
         else{
-            return redirect()->route('auth.login')
+            return redirect()->route('login')
             ->withErrors($validator)
             ->withInput($request->only('email'));
         }
     }
 
     public function create(){
-        return view('auth.register');
+        return view('account.register');
     }
     public function register(Request $request){
-        $request->validate([
-            'name' =>  'required',
-            'email' =>  'required',
-            'password' =>  'required'
+        $validator = Validator::make($request->all(),[
+            'name' =>  'required|min:3',
+            'email' =>  'required|email|unique:users',
+            'password' =>  'required|min:8|confirmed'
         ]);
+        if($validator->passes()){
+            
+            $user = new User();
+            $user->name  = $request->name;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->password = Hash::make($request->password);
+            $user->save();
 
-        $user = new User();
-        $user->name  = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        if($user->save()){
-            return redirect(route('auth.login'))->with('success', 'Registration Successfully');
+            session()->flash('success','You have been registered successfully.');
+            return response()->json([
+                'status' => true
+            ]);
+            return redirect()->route('login');
         }
-        return redirect(route('auth.register'))->with('error', 'Failedto create account');
+        else{
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors()
+            ]);
+        }
+
     }
 }

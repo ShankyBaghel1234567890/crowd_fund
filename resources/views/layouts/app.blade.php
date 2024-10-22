@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/animate.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/animated-headline.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/min.css')}}">
 </head>
 <body>
     

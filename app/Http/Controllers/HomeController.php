@@ -30,4 +30,8 @@ class HomeController extends Controller
     public function events(){
         return view("events");
     }
+
+    public function donate(){
+        return view("donate_now");
+    }
 }

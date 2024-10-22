@@ -1,0 +1,375 @@
+.carousel-item {
+    height: 70vh;
+    background-color: #cac4c4;
+}
+
+.carousel-item img {
+    height: 70%;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    background-color: rgba(240, 231, 231, 0.6); 
+    padding: 2px;
+    border-radius: 2px;
+}
+
+.carousel-caption h5 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+}
+
+.carousel-caption p {
+    font-size: 1.5rem;
+}
+
+.carousel .btn {
+    margin: 5px;
+    padding: 30px 50px;
+    font-size: 1.5rem;
+    border-radius: 25px;
+    transition: transform 0.2s ease;
+}
+
+.carousel .btn:hover {
+    transform: scale(1.1); 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(150, 147, 147, 0.6);
+    padding: 2px;
+    border-radius: 10%;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 1px;
+    height: 1px;
+    border-radius: 10%;
+}
+
+/* Smooth transition for fade effect */
+.carousel-fade .carousel-item {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-fade .carousel-item.active {
+    opacity: 1;
+}
+
+/* Optional shadow to enhance images */
+.carousel-item img {
+    box-shadow: 0px 10px 20px rgba(240, 236, 236, 0.5);
+}
+
+/* Make the carousel control buttons look more efficient */
+.carousel-control-prev, .carousel-control-next {
+
+width: 30px; /* Reduce button width */
+height: 30px; /* Consistent button height */
+background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+border-radius: 50%; /* Rounded buttons */
+display: flex;
+align-items: center;
+justify-content: center;
+transition: background-color 0.3s ease; /* Smooth transition */
+position: absolute; /* Positioning */
+top: 50%; /* Vertical centering */
+transform: translateY(-50%);
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+}
+
+/* Icon styling */
+.carousel-control-prev-icon, .carousel-control-next-icon {
+display: none; /* Hide default Bootstrap icons */
+}
+
+/* Use FontAwesome icons instead */
+.carousel-control-prev::before {
+content: '\f104'; /* FontAwesome left arrow icon */
+font-family: "Font Awesome 5 Free"; 
+font-weight: 900;
+color: white; /* Icon color */
+font-size: 20px; /* Icon size */
+}
+
+.carousel-control-next::before {
+content: '\f105'; /* FontAwesome right arrow icon */
+font-family: "Font Awesome 5 Free"; 
+font-weight: 900;
+color: white;
+font-size: 20px;
+}
+.carousel-control-prev,
+.carousel-control-next {
+width: 30px; /* Adjust width */
+height: 30px; /* Adjust height */
+background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+border-radius: 50%; /* Rounded shape */
+display: flex;
+align-items: center;
+justify-content: center;
+transition: background-color 0.3s ease;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+background-color: rgba(0, 0, 0, 0.7); /* Darker background on hover */
+}
+
+/* Decrease the size of the default icons */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+width: 15px; /* Adjust icon width */
+height: 15px; /* Adjust icon height */
+background-size: 100%; /* Ensure icon is scaled properly */
+}
+
+.slider-area {
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh; /* Full viewport height to center content */
+padding: 0; /* Remove any padding */
+margin: 0; /* Remove extra margin */
+}
+
+.single-slider {
+display: flex;
+align-items: center;
+justify-content: center;
+min-height: 100vh; /* Ensure the slider takes full height */
+}
+
+.hero__caption {
+text-align: center;
+}
+
+.hero__caption h1, .hero__caption p {
+margin: 0 auto; /* Remove any extra margins */
+padding: 0; /* Remove any extra padding */
+}
+
+.hero__btn {
+margin-top: 20px; /* Space between buttons and text */
+}
+
+.cal-btn {
+display: flex;
+align-items: center;
+margin-left: 15px;
+}
+
+.hero__btn .btn, .hero__btn .cal-btn {
+text-align: center;
+}
+
+.service-area {
+padding: 30px 0; /* Adjust padding to fit content */
+margin: 0; /* Remove extra margin */
+}
+
+.section-tittle {
+margin-bottom: 50px; /* Adjust the bottom margin */
+}
+
+.section-tittle h2, .section-tittle span {
+margin: 0; /* Remove any extra margins */
+}
+
+.single-cat {
+margin-bottom: 30px; /* Reduce margin between sections */
+padding: 20px;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for better visibility */
+border-radius: 8px; /* Optional: Rounded corners */
+}
+
+.row {
+margin: 0; /* Ensure no extra margin between rows */
+}
+
+.col-lg-4, .col-md-6, .col-sm-6 {
+padding: 0 10px; /* Reduce padding inside columns */
+}
+.about-low-area {
+padding: 40px 0; /* Adjust top and bottom padding */
+}
+
+.about-caption {
+margin-bottom: 30px; /* Reduce margin below caption */
+}
+
+.section-tittle {
+margin-bottom: 20px; /* Adjust bottom margin for section title */
+}
+
+.section-tittle h2, .section-tittle span {
+margin: 0; /* Remove extra margins */
+}
+
+.our-cases-area {
+padding: 30px 0; /* Adjust top and bottom padding */
+}
+
+.section-tittle.text-center {
+margin-bottom: 40px; /* Adjust bottom margin */
+}
+
+.single-cases {
+margin-bottom: 30px; /* Reduce bottom margin */
+}
+
+.row {
+margin: 0; /* Remove extra margin from rows */
+}
+
+.col-lg-4, .col-md-6, .col-sm-6 {
+padding: 0 10px; /* Remove extra padding on sides */
+}
+
+
+.featured-job-area {
+padding: 40px 0; /* Adjust top and bottom padding */
+}
+
+.section-tittle {
+margin-bottom: 20px; /* Reduce bottom margin for section title */
+}
+
+.mb-80 {
+margin-bottom: 40px; /* Adjust specific margin for title */
+}
+
+.single-job-items {
+margin-bottom: 20px; /* Reduce bottom margin between job items */
+}
+
+.team-area {
+padding: 80px 0; /* Adjust padding to reduce space */
+}
+
+.team-caption {
+margin-top: 10px; /* Reduce margin above team caption */
+}
+
+.single-team {
+margin-bottom: 20px; /* Reduce bottom margin between team members */
+}
+
+.team-img {
+position: relative; /* Keep social icons in place */
+}
+
+.team-social {
+position: absolute;
+bottom: 10px; /* Adjust position of social icons */
+left: 50%;
+transform: translateX(-50%);
+}
+
+.row {
+margin: 0; /* Remove extra margin from rows */
+}
+
+.col-lg-3, .col-md-6, .col-sm-6 {
+padding: 0 10px; /* Remove extra padding on sides */
+}
+.testimonial-area {
+padding: 40px 0; /* Adjust top and bottom padding */
+}
+
+.single-testimonial {
+margin-bottom: 20px; /* Reduce bottom margin for each testimonial */
+}
+
+.founder-img {
+margin-bottom: 20px; /* Reduce margin below founder image */
+}
+
+.testimonial-top-cap {
+margin-top: 20px; /* Reduce margin above testimonial text */
+}
+
+.count-down-area {
+padding: 25px 0; /* Adjust padding to reduce space */
+}
+
+.single-counter {
+margin-bottom: 15px; /* Reduce bottom margin for counter items */
+}
+
+.row {
+margin: 0; /* Remove extra margin from rows */
+}
+
+.col-lg-3, .col-md-6, .col-sm-6 {
+padding: 0 10px; /* Remove extra padding on sides */
+}
+.footer-wrapper {
+padding: 40px 0; /* Adjust top and bottom padding */
+}
+
+.footer-area {
+padding: 20px 0; /* Adjust padding to create a tighter layout */
+}
+
+.single-footer-caption {
+margin-bottom: 20px; /* Reduce margin between footer sections */
+}
+
+.footer-logo img {
+max-width: 100%; /* Ensure the logo fits well */
+height: auto; /* Maintain aspect ratio */
+}
+
+.footer-tittle h4 {
+font-weight: bold; /* Make section titles more prominent */
+margin-bottom: 15px; /* Add space below titles */
+}
+
+.footer-tittle ul {
+padding: 0; /* Remove default padding */
+list-style-type: none; /* Remove bullets */
+}
+
+.footer-tittle ul li {
+margin-bottom: 10px; /* Add space between list items */
+}
+
+.footer-tittle ul li a {
+color: #ffffff; /* Change link color to white for visibility */
+transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.footer-tittle ul li a:hover {
+color: #f39c12; /* Change color on hover */
+}
+
+.footer-form {
+margin-top: 10px; /* Space above the newsletter form */
+}
+
+.footer-form input {
+border: 1px solid #ddd; /* Subtle border for the input */
+padding: 10px; /* Padding for the input field */
+width: calc(100% - 50px); /* Responsive width */
+margin-bottom: 10px; /* Space below input */
+}
+
+.footer-form .form-icon {
+display: inline-block; /* Align button with input */
+}
+
+.footer-bottom-area {
+padding: 1px 0; /* Adjust bottom area padding */
+border-top: 1px solid #ddd; /* Subtle border for separation */
+}
+
+.footer-copy-right {
+text-align: center; /* Center the copyright text */
+color: #ffffff; /* Change color for visibility */
+}

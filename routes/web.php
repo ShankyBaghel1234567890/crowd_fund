@@ -30,6 +30,7 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/blogs', 'blog');
     Route::get('/blog_details', 'blog_details');
     Route::get('/about', 'about');
+    Route::get('/donate_now', 'donate');
 
 });
 
@@ -45,7 +46,7 @@ Route::group(['middleware' => 'guest'],function(){
 
 Route::group(['middleware' => 'guest'],function(){
 
-    Route::get('/login',[LoginController::class,'index'])->name('auth.login');
+    Route::get('/login',[LoginController::class,'index'])->name('login');
     Route::post('/authenticate',[LoginController::class,'authenticate'])->name('auth.authenticate');
 
 
@@ -91,6 +92,14 @@ Route::group(['middleware' => 'auth'],function(){
 
         Route::get('/dashboard',[UserDashboardController::class,'index'])->name('user.dashboard');
         Route::get('/logout',[UserDashboardController::class,'logout'])->name('user.logout');
+        
+        //Campaign Controller
+        // Route::get('/campaigns',[CampaignController::class,'index'])->name('campaigns.index');
+        // Route::get('/campaigns/create',[CampaignController::class,'create'])->name('campaigns.create');
+        // Route::post('/campaigns',[CampaignController::class,'store'])->name('campaigns.store');
+        // Route::get('/campaigns/{campaign}/edit',[CampaignController::class,'edit'])->name('campaigns.edit');
+        // Route::put('/campaigns/{campaign}',[CampaignController::class,'update'])->name('campaigns.update');
+        // Route::delete('/campaigns/{campaign}',[CampaignController::class,'destroy'])->name('campaigns.delete');
         
     });
 
