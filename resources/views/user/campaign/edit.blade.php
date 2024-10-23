@@ -10,7 +10,7 @@
 								<h1>Edit Campaign</h1>
 							</div>
 							<div class="col-sm-6 text-right">
-								<a href="{{route('campaigns.index')}}" class="btn btn-primary">Back</a>
+								<a href="{{route('campaign.index')}}" class="btn btn-primary">Back</a>
 							</div>
 						</div>
 					</div>
@@ -92,7 +92,7 @@
                             </div>
                             <div class="pb-5 pt-3">
                                 <button type="submit" class="btn btn-primary">Update</button>
-                                <a href="{{route('campaigns.index')}}" class="btn btn-outline-dark ml-3">Cancel</a>
+                                <a href="{{route('campaign.index')}}" class="btn btn-outline-dark ml-3">Cancel</a>
                             </div>
                         </form>
 					</div>
@@ -111,7 +111,7 @@ $("#campaignform").submit(function(event){
         var element = $(this)
         $("button[type=submit]").prop('disable',true);
         $.ajax({
-            url: '{{route("campaigns.update",$campaign->id)}}',
+            url: '{{route("campaign.update",$campaign->id)}}',
             type: 'put',
             data: element.serializeArray(),
             dataType: 'json',
@@ -120,7 +120,7 @@ $("#campaignform").submit(function(event){
 
                 if(response['status'] == true){
 
-                    window.location.href="{{route('campaigns.index')}}";
+                    window.location.href="{{route('campaign.index')}}";
 
                     
 

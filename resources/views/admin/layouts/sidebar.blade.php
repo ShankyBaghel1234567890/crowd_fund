@@ -39,32 +39,32 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="products.html" class="nav-link">
+								<a href="" class="nav-link">
 									<i class="nav-icon fas fa-money-bill"></i>
 									<p>Donation</p>
 								</a>
 							</li>
 							
 							<li class="nav-item">
-								<a href="discount.html" class="nav-link">
+								<a href="" class="nav-link">
 									<i class="nav-icon  fas fa-users" aria-hidden="true"></i>
-									<p>members</p>
+									<p>Volunteers</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="users.html" class="nav-link">
+								<a href="" class="nav-link">
 									<i class="nav-icon fas fa-file-invoice "></i>
 									<p>Withdraw Logs</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="pages.html" class="nav-link">
+								<a href="" class="nav-link">
 									<i class="nav-icon  far fa-user"></i>
 									<p>User Management</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="pages.html" class="nav-link">
+								<a href="" class="nav-link">
 									<i class="nav-icon  fas fa-chart-pie"></i>
 									<p>Report</p>
 								</a>

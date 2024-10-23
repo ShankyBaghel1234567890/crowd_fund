@@ -15,7 +15,7 @@ class DashboardController extends Controller
     }
 
     public function logout(){
-        Auth::guard('auth')->logout();
-        return redirect()->route('login');
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
     }
 }

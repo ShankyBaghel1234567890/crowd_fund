@@ -4,9 +4,11 @@ use App\Http\Controllers\Admin\CampaignController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\TempImagesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\CampaignController as UserCampaignController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(HomeController::class)->group(function(){
-    Route::get('/', 'index');
+    Route::get('/', 'index')->name('home');
     Route::get('/pro', 'program');
     Route::get('/elements', 'elements');
     Route::get('/events', 'events');
@@ -31,6 +33,8 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/blog_details', 'blog_details');
     Route::get('/about', 'about');
     Route::get('/donate_now', 'donate');
+    Route::get('/volunteer/register', 'volunteers')->name('home.volunteer');
+    Route::post('/volunteer', 'volunteer_store')->name('volunteer.store');
 
 });
 
@@ -52,9 +56,17 @@ Route::group(['middleware' => 'guest'],function(){
 
 });
 
-Route::group(['middleware' => 'auth'],function(){
+Route::group(['prefix' => 'admin'],function(){
+
+    Route::group(['middleware' => 'admin.guest'],function(){
+
+        Route::get('/login',[AdminLoginController::class,'index'])->name('admin.login');
+        Route::post('/authenticate',[AdminLoginController::class,'authenticate'])->name('admin.authenticate');
+    
+    
+    });
    
-    Route::group(['prefix' => 'admin'],function(){
+    Route::group(['middleware' => 'admin.auth'],function(){
 
         Route::get('/dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
         Route::get('/logout',[DashboardController::class,'logout'])->name('admin.logout');
@@ -88,25 +100,29 @@ Route::group(['middleware' => 'auth'],function(){
 
     });
 
-    Route::group(['prefix' => 'user'],function(){
+    
+
+});
+
+Route::group(['prefix' => 'user'],function(){
+   
+
+
+    Route::group(['middleware' => 'web'],function(){
 
         Route::get('/dashboard',[UserDashboardController::class,'index'])->name('user.dashboard');
         Route::get('/logout',[UserDashboardController::class,'logout'])->name('user.logout');
         
         //Campaign Controller
-        // Route::get('/campaigns',[CampaignController::class,'index'])->name('campaigns.index');
-        // Route::get('/campaigns/create',[CampaignController::class,'create'])->name('campaigns.create');
-        // Route::post('/campaigns',[CampaignController::class,'store'])->name('campaigns.store');
-        // Route::get('/campaigns/{campaign}/edit',[CampaignController::class,'edit'])->name('campaigns.edit');
-        // Route::put('/campaigns/{campaign}',[CampaignController::class,'update'])->name('campaigns.update');
-        // Route::delete('/campaigns/{campaign}',[CampaignController::class,'destroy'])->name('campaigns.delete');
+        Route::get('/campaigns',[UserCampaignController::class,'index'])->name('campaign.index');
+        Route::get('/campaigns/create',[UserCampaignController::class,'create'])->name('campaign.create');
+        Route::post('/campaigns',[UserCampaignController::class,'store'])->name('campaign.store');
+        Route::get('/campaigns/{campaign}/edit',[UserCampaignController::class,'edit'])->name('campaign.edit');
+        Route::put('/campaigns/{campaign}',[UserCampaignController::class,'update'])->name('campaign.update');
+        Route::delete('/campaigns/{campaign}',[UserCampaignController::class,'destroy'])->name('campaign.delete');
         
     });
 
 });
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 
 require __DIR__.'/auth.php';

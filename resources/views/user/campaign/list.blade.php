@@ -10,7 +10,7 @@
 								<h1>Campaigns</h1>
 							</div>
 							<div class="col-sm-6 text-right">
-								<a href="{{route('campaigns.create')}}" class="btn btn-primary">New Category</a>
+								<a href="{{route('campaign.create')}}" class="btn btn-primary">New Category</a>
 							</div>
 						</div>
 					</div>
@@ -25,7 +25,7 @@
 							<form action="" method="get">
                                 <div class="card-header">
                                     <div class="card-title">
-                                        <button type="button" onclick="window.location.href='{{ route("campaigns.index")}}'" class="btn btn-default btn-sm">Reset</button>
+                                        <button type="button" onclick="window.location.href='{{ route("campaign.index")}}'" class="btn btn-default btn-sm">Reset</button>
                                     </div>
                                     <div class="card-tools">
                                         <div class="input-group input-group" style="width: 250px;">
@@ -75,7 +75,7 @@
 												
 											</td>
 											<td>
-												<a href="{{route('campaigns.edit',$campaign->id)}}">
+												<a href="{{route('campaign.edit',$campaign->id)}}">
 													<svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 														<path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
 													</svg>
@@ -114,7 +114,7 @@
 
 <script>
 	function deleteCampaign(id){
-		var url = '{{route("campaigns.delete","ID")}}';
+		var url = '{{route("campaign.delete","ID")}}';
 		var newUrl = url.replace("ID",id);
 		if(confirm('Are you sure want to delete')){
 			$.ajax({
@@ -129,7 +129,7 @@
 
 					if(response['status'] == true){
 
-						window.location.href="{{route('campaigns.index')}}";
+						window.location.href="{{route('campaign.index')}}";
 					}
 				}
 			});

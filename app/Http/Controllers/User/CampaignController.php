@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
@@ -21,13 +21,13 @@ class CampaignController extends Controller
         }
         $campaigns = $query->paginate(10);
 
-        return view('admin.campaign.list',compact('campaigns'));
+        return view('user.campaign.list',compact('campaigns'));
     }
 
     public   function create(){
         $categories = Category::orderBy('name','ASC')->get();
         $data['categories'] =   $categories;
-        return view('admin.campaign.create',$data);
+        return view('user.campaign.create',$data);
     }
 
     public   function store(Request $request){
@@ -93,13 +93,13 @@ class CampaignController extends Controller
         $campaign = Campaign::find($campaignId);
         if(empty($campaign)){
             $request->session()->flash('error','Record not found');
-            return redirect()->route('campaigns.index');
+            return redirect()->route('campaign.index');
         }
 
         $categories = Category::orderBy('name','ASC')->get();
         $data['categories'] =   $categories;
         $data['campaign'] = $campaign;
-        return view('admin.campaign.edit',$data);
+        return view('user.campaign.edit',$data);
     }
 
     public function update($campaignId, Request $request){
@@ -181,7 +181,7 @@ class CampaignController extends Controller
 
         $campaign = Campaign::find($campaignId);
         if(empty($campaign)){
-            $request->session()->flash('error','Category not found');
+            $request->session()->flash('error','Campaign not found');
             return response()->json([
                 'status' => true,
                 'message' => 'Campaign not found'

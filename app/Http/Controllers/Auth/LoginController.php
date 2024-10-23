@@ -26,16 +26,18 @@ class LoginController extends Controller
         
         if($validator){
 
-            if(Auth::guard('auth')->attempt(['email' => $request->email,'password'=> 
+            if(Auth::guard('web')->attempt(['email' => $request->email,'password'=> 
             $request->password],$request->get('remember'))){
 
-                $login = Auth::guard('auth')->user();
+                $login = Auth::guard('web')->user();
 
-                if ($login->role == 2){
-                    return redirect()->route('admin.dashboard');
+                if ($login->role == 1){
+                    return redirect()->route('user.dashboard');
                 }
                 else{
-                    return redirect()->route('user.dashboard');
+                    return redirect()->route('login')
+                    ->with('error','You are not authorized for user login')
+                    ->withInput($request->only('email'));
                 }
             }
             
