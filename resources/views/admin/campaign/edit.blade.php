@@ -111,8 +111,8 @@ $("#campaignform").submit(function(event){
         var element = $(this)
         $("button[type=submit]").prop('disable',true);
         $.ajax({
-            url: '{{route("campaigns.update",$campaign->id)}}',
-            type: 'put',
+            url: '{{route("campaigns.store")}}',
+            type: 'post',
             data: element.serializeArray(),
             dataType: 'json',
             success:function(response){

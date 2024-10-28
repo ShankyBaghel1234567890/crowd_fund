@@ -2,7 +2,11 @@
 
 @section('content')
 
-
+@if (Session::has('success'))
+			 	<div class="alert alert-success">
+					{{Session::get('success')}}
+				</div>
+			 @endif
 
 <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-indicators">
@@ -13,7 +17,7 @@
         
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="childb.jpg" class="d-block w-100" alt="...">
+                    <img src="assets/img/childb.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Welcome to Crowd Funded Organisation</h5>
                         <p>Effortlessly Have Your Own World Class Professional Fund Raising Platform</p>
@@ -21,7 +25,7 @@
                 </div>
         
                 <div class="carousel-item">
-                    <img src="childd.jpg" class="d-block w-100" alt="...">
+                    <img src="assets/img/childd.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Welcome to Crowd Funded Organisation</h5>
                         <p>Effortlessly Have Your Own World Class Professional Fund Raising Platform</p>
@@ -29,7 +33,7 @@
                 </div>
         
                 <div class="carousel-item">
-                    <img src="childf.jpg" class="d-block w-100" alt="...">
+                    <img src="assets/img/childf.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Welcome to Crowd Funded Organisation</h5>
                         <p>Effortlessly Have Your Own World Class Professional Fund Raising Platform</p>
@@ -274,7 +278,7 @@
                                 
                             </div>
                             <div class="job-tittle">
-                                <a href="#"><h4> {{$campaign->name}} </h4></a>
+                                <a href="{{route('donate',$campaign->id)}}"><h4> {{$campaign->name}} </h4></a>
                                 <ul>
                                     <li><i class="far fa-clock"></i>{{$campaign->description}}</li>
                                     
@@ -403,7 +407,7 @@
                         </div>
                     </div>
                     <div class="col-xl-2 col-lg-3 col-md-4">
-                        <a href="#" class="btn white-btn f-right sm-left">Become A Volunteer</a>
+                        <a href="/volunteer" class="btn white-btn f-right sm-left">Become A Volunteer</a>
                     </div>
                 </div>
             </div>

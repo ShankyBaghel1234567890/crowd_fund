@@ -2,8 +2,8 @@
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 				<!-- Brand Logo -->
-				<a href="#" class="brand-link">
-					<img src="{{asset('login-assets/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+				<a href="{{route('user.dashboard')}}" class="brand-link">
+					<img src="{{asset('login-assets/img/logo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
 					<span class="brand-text font-weight-light">Crowd Funding</span>
 				</a>
 				<!-- Sidebar -->
@@ -26,27 +26,27 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link">
+								<a href="{{route('usergalleries.index')}}" class="nav-link">
 									<i class="nav-icon fas fa-images"></i>
 									<p>Galllery</p>
 								</a>
 							</li>
 							<li class="nav-item">
 								
-								<a href="#" class="nav-link">
+								<a href="{{route('user.donations')}}" class="nav-link">
 								<i class="nav-icon fas fa-money-bill"></i>
 									<p>Donations</p>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="products.html" class="nav-link">
+								<a href="{{route('user.withdraw')}}" class="nav-link">
 									<i class="nav-icon fas fa-file-invoice"></i>
 									<p>Withdraw Request</p>
 								</a>
 							</li>
 							
 							<li class="nav-item">
-								<a href="#" class="nav-link">
+								<a href="{{route('user.profile')}}" class="nav-link">
 									<!-- <i class="nav-icon fas fa-tag"></i> -->
 									<i class="fas fa-user nav-icon"></i>
 									<p>Profile</p>

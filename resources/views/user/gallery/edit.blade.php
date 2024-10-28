@@ -7,10 +7,10 @@
 					<div class="container-fluid my-2">
 						<div class="row mb-2">
 							<div class="col-sm-6">
-								<h1>Create Campaign</h1>
+								<h1>Edit Gallery</h1>
 							</div>
 							<div class="col-sm-6 text-right">
-								<a href="{{route('campaign.index')}}" class="btn btn-primary">Back</a>
+								<a href="{{route('usergallaries.index')}}" class="btn btn-primary">Back</a>
 							</div>
 						</div>
 					</div>
@@ -20,61 +20,44 @@
 				<section class="content">
 					<!-- Default box -->
 					<div class="container-fluid">
-                        <form action="" method="post" id="campaignform" name="campaignform">
+                        <form action="" method="post" id="galleryform" name="galleryform">
                             <div class="card">
                                 <div class="card-body">								
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="lname">Category</label>
-                                                <select name="category" id="category" class="form-control">
-                                                    <option value="">Select a Category</option>
-                                                    @if ($categories->isNotEmpty())
-                                                        @foreach ($categories as $category)
-                                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                                <label for="lname">Campaigns</label>
+                                                <select name="campaign" id="campaign" class="form-control">
+                                                    <option value="">Select a Campaign</option>
+                                                    @if ($campaigns->isNotEmpty())
+                                                        @foreach ($campaigns as $campaign)
+                                                            <option {{($gallery->campaign == $campaign->id) ?  'selected' : ''}} value="{{$campaign->id}}">{{$campaign->name}}</option>
                                                         @endforeach
                                                     @endif
                                                 </select>
                                                 <p></p>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="fname">Campaign Name</label>
-                                                <input type="text"  name="name" id="name" class="form-control" placeholder="Campaign Name">
-                                                <p></p>	
-                                            </div>
-                                        </div>	
+                                        	
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="mname">Description</label>
-                                                <textarea  class="form-control" name="description" id="description" placeholder="ex. Description"></textarea>
+                                                <textarea  class="form-control" name="description" id="description" placeholder="ex. Description" value="{{$gallery->description}}"></textarea>
                                                 <p></p>	
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="amount">Target Amount</label>
-                                                <input type="number"  name="amount" id="amount" class="form-control" placeholder="ex. 20,000.00">
-                                                <p></p>	
-                                            </div>
+                                        
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="dline">Deadline</label>
-                                                <input type="date"  name="deadline" id="deadline" class="form-control">
-                                                <p></p>	
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <input type="text" id="image_id" name="image_id" value="">
+                                                <input type="hidden" id="image_id" name="image-id" value="">
                                                 <label for="image">Banner</label>
                                                 <div id="image" class="dropzone dz-clickable">
                                                     <div class="dz-message needsclick">
                                                         <br>Drop files here or click to upload.<br><br>
                                                     </div>
-                                                </div>	
+                                                </div>
+                                                <p></p>	
                                             </div>
                                         </div>
                                        									
@@ -82,8 +65,8 @@
                                 </div>							
                             </div>
                             <div class="pb-5 pt-3">
-                                <button type="submit" class="btn btn-primary">Create</button>
-                                <a href="{{route('campaign.index')}}" class="btn btn-outline-dark ml-3">Cancel</a>
+                                <button type="submit" class="btn btn-primary">Update</button>
+                                <a href="{{route('usergallaries.index')}}" class="btn btn-outline-dark ml-3">Cancel</a>
                             </div>
                         </form>
 					</div>
@@ -97,13 +80,13 @@
 
 <script>
 
-$("#campaignform").submit(function(event){
+$("#galleryform").submit(function(event){
         event.preventDefault();
-        var element = $(this)
+        var element = $("#galleryform")
         $("button[type=submit]").prop('disable',true);
         $.ajax({
-            url: '{{route("campaign.store")}}',
-            type: 'post',
+            url: '{{route("usergalleries.update",$gallery->id)}}',
+            type: 'put',
             data: element.serializeArray(),
             dataType: 'json',
             success:function(response){
@@ -111,11 +94,11 @@ $("#campaignform").submit(function(event){
 
                 if(response['status'] == true){
 
-                    window.location.href="{{route('campaign.index')}}";
+                    window.location.href="{{route('usergalleries.index')}}";
 
                     
 
-                    $("#name").removeClass('is-invalid')
+                    $("#image").removeClass('is-invalid')
                     .siblings('p')
                     .removeClass('invalid-feedback').html("");
 
@@ -123,35 +106,28 @@ $("#campaignform").submit(function(event){
                     .siblings('p')
                     .removeClass('invalid-feedback').html("");
 
-                    $("#amount").removeClass('is-invalid')
-                    .siblings('p')
-                    .removeClass('invalid-feedback').html("");
-
-                    $("#deadline").removeClass('is-invalid')
-                    .siblings('p')
-                    .removeClass('invalid-feedback').html("");
-
+                    
                     
                 }
                 else{
 
                     var errors =response['errors']
-                if(errors['category']){
-                    $("#category").addClass('is-invalid')
+                if(errors['campaign']){
+                    $("#campaign").addClass('is-invalid')
                     .siblings('p')
-                    .addClass('invalid-feedback').html(errors['category']);
+                    .addClass('invalid-feedback').html(errors['campaign']);
                 }else{
-                    $("#category").removeClass('is-invalid')
+                    $("#campaign").removeClass('is-invalid')
                     .siblings('p')
                     .removeClass('invalid-feedback').html("");
                 }
 
-                if(errors['name']){
-                    $("#name").addClass('is-invalid')
+                if(errors['image']){
+                    $("#image").addClass('is-invalid')
                     .siblings('p')
-                    .addClass('invalid-feedback').html(errors['name']);
+                    .addClass('invalid-feedback').html(errors['image']);
                 }else{
-                    $("#name").removeClass('is-invalid')
+                    $("#image").removeClass('is-invalid')
                     .siblings('p')
                     .removeClass('invalid-feedback').html("");
                 }
@@ -166,26 +142,7 @@ $("#campaignform").submit(function(event){
                     .removeClass('invalid-feedback').html("");
                 }
 
-                if(errors['amount']){
-                    $("#amount").addClass('is-invalid')
-                    .siblings('p')
-                    .addClass('invalid-feedback').html(errors['amount']);
-                }else{
-                    $("#amount").removeClass('is-invalid')
-                    .siblings('p')
-                    .removeClass('invalid-feedback').html("");
-                }
-
-                if(errors['deadline']){
-                    $("#deadline").addClass('is-invalid')
-                    .siblings('p')
-                    .addClass('invalid-feedback').html(errors['deadline']);
-                }else{
-                    $("#deadline").removeClass('is-invalid')
-                    .siblings('p')
-                    .removeClass('invalid-feedback').html("");
-                }
-
+                
                 }
                 
             }, error:function(jqXHR,exception){

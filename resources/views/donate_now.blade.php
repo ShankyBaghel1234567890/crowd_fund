@@ -60,12 +60,12 @@
         </div>
     </div>
 
-<div class="donation-form">
+<div class="donationform">
     <h2 class="text-center">Donate to Our Campaign</h2>
     <form>
         <div class="form-group">
             <label for="campaign">Campaign Name</label>
-            <input readonly type="text" class="form-control" id="campaign" placeholder="Campaign" required>
+            <input readonly type="text" class="form-control" id="campaign" name="campaign" placeholder="Campaign" value="{{($campaign->name)}}" required>
         </div>
         <div class="form-group">
             <label for="name">Name</label>
@@ -77,15 +77,15 @@
         </div>
         <div class="form-group">
             <label for="id">ID</label>
-            <select class="form-control" id="paymentMethod" required>
+            <select class="form-control" id="id_type" required>
                 <option value="">Select ID</option>
-                <option value="creditCard">Aadhaar </option>
-                <option value="paypal">Pan</option>
-                <option value="bankTransfer">Driving License</option>
+                <option value="aadhar">Aadhaar </option>
+                <option value="pan">Pan</option>
+                <option value="license">Driving License</option>
             </select>
         </div>
         <div class="form-group">
-                <input type="text" class="form-control" id="id" placeholder="Enter your ID " required>
+                <input type="text" class="form-control" id="idno" placeholder="Enter your ID " required>
             </div>
         <div class="form-group">
             <label for="contact">Contact Number</label>
@@ -96,19 +96,163 @@
             <input type="number" class="form-control" id="amount" placeholder="Enter donation amount" required>
         </div>
         <div class="form-group">
-            <label  for="paymentMethod">Payment Method</label>
-            <select class="form-control" id="paymentMethod" required>
-                <option value="">Select payment method</option>
-                <option value="creditCard">Credit Card</option>
-                <option value="paypal">PayPal</option>
-                <option value="bankTransfer">Bank Transfer</option>
-            </select>
+            <label  for="paymentMethod">Scan and Pay</label>
+            <img src="assets/img/QR.jpeg" alt="">
+        </div>
+        <div class="form-group">
+        <label  for="paymentMethod">Transaction ID</label>
+        <input type="text" class="form-control" id="transaction_id" placeholder="Transaction ID" required>
         </div>
         <button type="submit" class="btn submit-btn">Donate Now</button>
     </form>
-</div>
+    </div>
 
+    <script>
+        $("#donationform").submit(function(event){
+        event.preventDefault();
+        var element = $(this)
+        $("button[type=submit]").prop('disable',true);
+        $.ajax({
+            url: '{{route("donation.store")}}',
+            type: 'post',
+            data: element.serializeArray(),
+            dataType: 'json',
+            success:function(response){
+                $("button[type=submit]").prop('disable',false);
 
+                if(response['status'] == true){
+
+                    window.location.href="{{route('home')}}";
+
+                    
+
+                    $("#campaign").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+
+                    $("#name").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+
+                    $("#address").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+
+                    $("#id_type").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+
+                    $("#idno").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+
+                    $("#contact").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+
+                    $("#amount").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+
+                    $("#transaction_id").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+
+                    
+                }
+                else{
+
+                    var errors =response['errors']
+                if(errors['campaign']){
+                    $("#campaign").addClass('is-invalid')
+                    .siblings('p')
+                    .addClass('invalid-feedback').html(errors['campaign']);
+                }else{
+                    $("#campaign").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+                }
+
+                if(errors['name']){
+                    $("#name").addClass('is-invalid')
+                    .siblings('p')
+                    .addClass('invalid-feedback').html(errors['name']);
+                }else{
+                    $("#name").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+                }
+
+                if(errors['address']){
+                    $("#address").addClass('is-invalid')
+                    .siblings('p')
+                    .addClass('invalid-feedback').html(errors['address']);
+                }else{
+                    $("#address").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+                }
+
+                if(errors['id_type']){
+                    $("#id_type").addClass('is-invalid')
+                    .siblings('p')
+                    .addClass('invalid-feedback').html(errors['id_type']);
+                }else{
+                    $("#id_type").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+                }
+
+                if(errors['idno']){
+                    $("#idno").addClass('is-invalid')
+                    .siblings('p')
+                    .addClass('invalid-feedback').html(errors['idno']);
+                }else{
+                    $("#idno").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+                }
+
+                if(errors['contact']){
+                    $("#contact").addClass('is-invalid')
+                    .siblings('p')
+                    .addClass('invalid-feedback').html(errors['contact']);
+                }else{
+                    $("#contact").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+                }
+
+                if(errors['amount']){
+                    $("#amount").addClass('is-invalid')
+                    .siblings('p')
+                    .addClass('invalid-feedback').html(errors['amount']);
+                }else{
+                    $("#amount").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+                }
+
+                if(errors['transaction_id']){
+                    $("#transaction_id").addClass('is-invalid')
+                    .siblings('p')
+                    .addClass('invalid-feedback').html(errors['transaction_id']);
+                }else{
+                    $("#transaction_id").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+                }
+
+                
+
+                }
+                
+            }, error:function(jqXHR,exception){
+                console.log("Something went wrong")
+            }
+        })
+    });
+    </script>
 
  
  <script src="{{asset('./assets/js/vendor/jquery-1.12.4.min.js')}}"></script>

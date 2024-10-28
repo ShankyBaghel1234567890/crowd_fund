@@ -7,21 +7,25 @@ use App\Models\Campaign;
 use App\Models\Category;
 use App\Models\TempImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class CampaignController extends Controller
 {
     public function  index(Request $request){
-        $campaigns = Campaign::all();
+        $user = Auth::user();
+        $campaigns = Campaign::where('user_id',$user->id)->orderBy('created_at','DESC')->get();
         $query = Campaign::query();
 
         if(!empty($request->get('keyword'))){
             $campaigns = $campaigns->where('name','like','%'.$request->get('keyword').'%');
         }
-        $campaigns = $query->paginate(10);
+        $paginate = $query->paginate(10);
+        $data['campaigns'] = $campaigns;
+        $data['paginate'] = $paginate;
 
-        return view('user.campaign.list',compact('campaigns'));
+        return view('user.campaign.list',$data);
     }
 
     public   function create(){
@@ -37,18 +41,17 @@ class CampaignController extends Controller
             'description' => 'required',
             'amount' => 'required',
             'deadline' => 'required',
-            'status' =>  'required',
         ]);
-
+        $user = Auth::user();
         if($validator->passes()){
 
             $campaigns = new Campaign();
+            $campaigns->user_id = $user->id;
             $campaigns->category = $request->category;
             $campaigns->name = $request->name;
             $campaigns->description = $request->description;
             $campaigns->amount = $request->amount;
             $campaigns->deadline = $request->deadline;
-            $campaigns->status = $request->status;
             $campaigns->save();
 
             //save image here

@@ -7,10 +7,10 @@
 					<div class="container-fluid my-2">
 						<div class="row mb-2">
 							<div class="col-sm-6">
-								<h1>Campaigns</h1>
+								<h1>Gallery</h1>
 							</div>
 							<div class="col-sm-6 text-right">
-								<a href="{{route('campaign.create')}}" class="btn btn-primary">New Category</a>
+								<a href="{{route('usergalleries.create')}}" class="btn btn-primary">Upload New Image</a>
 							</div>
 						</div>
 					</div>
@@ -25,7 +25,7 @@
 							<form action="" method="get">
                                 <div class="card-header">
                                     <div class="card-title">
-                                        <button type="button" onclick="window.location.href='{{ route("campaign.index")}}'" class="btn btn-default btn-sm">Reset</button>
+                                        <button type="button" onclick="window.location.href='{{ route("usergalleries.index")}}'" class="btn btn-default btn-sm">Reset</button>
                                     </div>
                                     <div class="card-tools">
                                         <div class="input-group input-group" style="width: 250px;">
@@ -40,50 +40,33 @@
                                     </div>
                                 </div>
                             </form>
-							<div class="card-body table-responsive p-0">								
-								<table class="table table-hover text-nowrap">
-									<thead>
-										<tr>
+							<div class="card-body table-responsive p-0">
+                                <div class="filter-container p-0 row">								
+                                    @if ($galleries->isNotEmpty())
+                                        @foreach ($galleries as $gallery)
+                                        
 											
-											<th>Campaign Name</th>
-											<th>Description</th>
-                                            <th>Amount</th>
-                                            <th>Deadline</th>
-											<th width="130">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-                                        @if ($campaigns->isNotEmpty())
-                                        @foreach ($campaigns as $campaign)
-                                        <tr>
-											
-											<td>{{$campaign->name}}</td>
-											<td>{{$campaign->description}}</td>
-                                            <td>{{$campaign->amount}}</td>
-                                            <td>{{$campaign->deadline}}</td>
-											<td>
-												<a href="{{route('campaign.edit',$campaign->id)}}">
-													<svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-														<path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
-													</svg>
-												</a>&nbsp;
-												<a href="#" onclick="deleteCampaign({{$campaign->id}})" class="text-danger w-4 h-4 mr-1">
+                                            <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
+                                                <a href="{{route('galleries.edit',$gallery->id)}}" data-toggle="lightbox" data-title="sample 1 - white">
+                                                    <img src="{{$gallery->name}}" class="img-fluid mb-2" alt="white sample"/>
+                                                </a>
+                                                <a href="#" onclick="deleteGallery({{$gallery->id}})" class="text-danger w-4 h-4 mr-1">
 													<svg wire:loading.remove.delay="" wire:target="" class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 														<path	ath fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
 												  	</svg>
 												</a>
-											</td>
-										</tr>
+                                            </div>
+											
+											
+										
                                         @endforeach
                                         
                                         @else
                                             <tr>
-                                                <td colspan="5">Records Not Found</td>
+                                                <td colspan="5">&nbsp; &nbsp; Records Not Found</td>
                                             </tr>
-                                        @endif
-										
-									</tbody>
-								</table>										
+                                    @endif
+                                </div>										
 							</div>
 							<div class="card-footer clearfix">
                                 {{$paginate->links()}}
@@ -100,8 +83,8 @@
 @section('customjs')
 
 <script>
-	function deleteCampaign(id){
-		var url = '{{route("campaign.delete","ID")}}';
+	function deleteGallery(id){
+		var url = '{{route("usergalleries.delete","ID")}}';
 		var newUrl = url.replace("ID",id);
 		if(confirm('Are you sure want to delete')){
 			$.ajax({
@@ -116,7 +99,7 @@
 
 					if(response['status'] == true){
 
-						window.location.href="{{route('campaign.index')}}";
+						window.location.href="{{route('usergalleries.index')}}";
 					}
 				}
 			});

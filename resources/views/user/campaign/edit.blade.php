@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('user.layouts.app')
 
 @section('content')
 
@@ -64,15 +64,6 @@
                                                 <label for="dline">Deadline</label>
                                                 <input type="date"  name="deadline" id="deadline" class="form-control" value="{{($campaign->deadline)}}">
                                                 <p></p>	
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="status">Status</label>
-                                                <select name="status" id="status" class="form-control">
-                                                    <option {{($campaign->status == 1) ?  'selected' : ''}} value="1">Active</option>
-                                                    <option {{($campaign->status == 0) ?  'selected' : ''}} value="0">Block</option>
-                                                </select>	
                                             </div>
                                         </div>
                                         <div class="col-md-6">

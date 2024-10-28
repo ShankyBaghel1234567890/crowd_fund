@@ -4,86 +4,136 @@
 
     <div class="container mt-5">
         <h2 class="text-center">Volunteer Registration Form</h2>
-        <form action="" method="post" id="volunteerform" name="volunteerform">
-            @csrf
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" >
-            </div>
-            <div class="form-group">
-                <label for="id_type">ID Type</label>
-                <select class="form-control" id="id_type" name="id_type" >
-                    <option value="">Select ID Type</option>
-                    <option value="passport">Passport</option>
-                    <option value="driver_license">Driver's License</option>
-                    <option value="national_id">National ID</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="uid">UID</label>
-                <input type="text" class="form-control" id="uid" name="uid" >
-                <p></p>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" >
-                <p></p>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone</label>
-                <input type="tel" class="form-control" id="phone" name="phone" >
-                <p></p>
-            </div>
-            <div class="form-group">
-                <label for="occupation">Occupation</label>
-                <input type="text" class="form-control" id="occupation" name="occupation" >
-                <p></p>
-            </div>
-            <div class="form-group">
-                <label for="address">Address</label>
-                <input type="text" class="form-control" id="address" name="address" >
-                <p></p>
-            </div>
-            <div class="form-group">
-                <label for="city">City</label>
-                <input type="text" class="form-control" id="city" name="city" >
-                <p></p>
-            </div>
-            <div class="form-group">
-                <label for="state">State</label>
-                <input type="text" class="form-control" id="state" name="state" >
-                <p></p>
-            </div>
-            <div class="form-group">
-                <label for="country">Country</label>
-                <input type="text" class="form-control" id="country" name="country" >
-                <p></p>
-            </div>
-            <div class="form-group">
-                <label for="zip">Zip Code</label>
-                <input type="text" class="form-control" id="zip" name="zip" >
-                <p></p>
-            </div>
-            <div class="form-group">
-                <label for="mother_name">Mother's Name</label>
-                <input type="text" class="form-control" id="mother" name="mother" >
-                <p></p>
-            </div>
-            <div class="form-group">
-                <label for="father_name">Father's Name</label>
-                <input type="text" class="form-control" id="father" name="father" >
-                <p></p>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Submit</button>
-        </form>
-    </div>
+                <div class="container-fluid">
+                        <form action="" method="post" id="volunteerform" name="volunteerform">
+                            @csrf
+                            <div class="card">
+                                <div class="card-body">								
+                                    <div class="row">
+                                       
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="name"> Name</label>
+                                                <input type="text"  name="name" id="name" class="form-control" placeholder=" Name" >
+                                                <p></p>	
+                                            </div>
+                                        </div>	
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="email">Email</label>
+                                                <input type="text"  name="email" id="email" class="form-control" placeholder="email" >
+                                                <p></p>	
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="id_type">ID Type</label>
+                                                <select class="form-control" id="id_type" name="id_type" >
+                                                    <option value="">Select ID Type</option>
+                                                    <option value="passport">Passport</option>
+                                                    <option value="driver_license">Driver's License</option>
+                                                    <option value="national_id">National ID</option>
+                                                </select>
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                        	
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="uid">UID</label>
+                                                <input type="text"  name="uid" id="uid" class="form-control" placeholder="uid" >
+                                                <p></p>	
+                                            </div>
+                                        </div>	
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="phone">Phone</label>
+                                                <input type="text"  name="phone" id="phone" class="form-control" placeholder="Campaign Name" >
+                                                <p></p>	
+                                            </div>
+                                        </div>	
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="occupation">Occupation</label>
+                                                <input type="text"  name="occupation" id="occupation" class="form-control" placeholder="occupation" >
+                                                <p></p>	
+                                            </div>
+                                        </div>	
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="address">Address</label>
+                                                <input type="text"  name="address" id="address" class="form-control" placeholder="address" >
+                                                <p></p>	
+                                            </div>
+                                        </div>	
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="city">City</label>
+                                                <input type="text"  name="city" id="city" class="form-control" placeholder="city" >
+                                                <p></p>	
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="state">State</label>
+                                                <input type="text"  name="state" id="state" class="form-control" placeholder="ex. 20,000.00" >
+                                                <p></p>	
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="country">Country</label>
+                                                <input type="text"  name="country" id="country" class="form-control" >
+                                                <p></p>	
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="zip_code">Zip Code</label>
+                                                <input type="text"  name="zip_code" id="zip_code" class="form-control" >
+                                                <p></p>	
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="mother">Mother Name</label>
+                                                <input type="text"  name="mother" id="mother" class="form-control" >
+                                                <p></p>	
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="father">Father Name</label>
+                                                <input type="text"  name="father" id="father" class="form-control" >
+                                                <p></p>	
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="image">Image</label>
+                                                <div id="image" class="dropzone dz-clickable">
+                                                    <div class="dz-message needsclick">
+                                                        <br>Drop files here or click to upload.<br><br>
+                                                    </div>
+                                                </div>
+                                                	
+                                            </div>
+                                        </div>
+                                       									
+                                    </div>
+                                </div>							
+                            </div>
+                            <button type="submit" class="btn  btn-block">Submit</button>
+                        </form>
+                    </div>
+        </div>
 
  @endsection
 
  @section('customjs')
  
  <script>
- $("#campaignform").submit(function(event){
+ $("#volunteerform").submit(function(event){
         event.preventDefault();
         var element = $(this)
         $("button[type=submit]").prop('disable',true);
@@ -142,7 +192,7 @@
                     .siblings('p')
                     .removeClass('invalid-feedback').html("");
 
-                    $("#zip").removeClass('is-invalid')
+                    $("#zip_code").removeClass('is-invalid')
                     .siblings('p')
                     .removeClass('invalid-feedback').html("");
 
@@ -258,12 +308,12 @@
                     .removeClass('invalid-feedback').html("");
                 }
 
-                if(errors['zip']){
-                    $("#zip").addClass('is-invalid')
+                if(errors['zip_code']){
+                    $("#zip_code").addClass('is-invalid')
                     .siblings('p')
-                    .addClass('invalid-feedback').html(errors['zip']);
+                    .addClass('invalid-feedback').html(errors['zip_code']);
                 }else{
-                    $("#zip").removeClass('is-invalid')
+                    $("#zip_code").removeClass('is-invalid')
                     .siblings('p')
                     .removeClass('invalid-feedback').html("");
                 }

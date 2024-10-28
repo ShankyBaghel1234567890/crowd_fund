@@ -15,11 +15,7 @@
 	<body class="hold-transition login-page">
 		<div class="login-box">
 			<!-- /.login-logo -->
-			 @if (Session::has('success'))
-			 	<div class="alert alert-success">
-					{{Session::get('success')}}
-				</div>
-			 @endif
+			 
 			 @include('account.message')
 			<div class="card card-outline card-primary">
 			  	<div class="card-header text-center">

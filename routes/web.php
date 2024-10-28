@@ -3,13 +3,23 @@
 use App\Http\Controllers\Admin\CampaignController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DonationController as AdminDonationController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\TempImagesController;
+use App\Http\Controllers\Admin\UserManagementController;
+use App\Http\Controllers\Admin\VolunteerController;
+use App\Http\Controllers\Admin\WithdrawLogsController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\User\CampaignController as UserCampaignController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
+use App\Http\Controllers\User\DonationController;
+use App\Http\Controllers\User\GalleryController as UserGalleryController;
+use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\WithdrawController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,8 +42,9 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/blogs', 'blog');
     Route::get('/blog_details', 'blog_details');
     Route::get('/about', 'about');
-    Route::get('/donate_now', 'donate');
-    Route::get('/volunteer/register', 'volunteers')->name('home.volunteer');
+    Route::get('/donate_now', 'donate')->name('donate');
+    Route::post('/donate_now', 'donation_store')->name('donation.store');
+    Route::get('/volunteer', 'volunteers')->name('home.volunteer');
     Route::post('/volunteer', 'volunteer_store')->name('volunteer.store');
 
 });
@@ -55,6 +66,9 @@ Route::group(['middleware' => 'guest'],function(){
 
 
 });
+
+//temp-images route
+Route::post('/upload-temp-images',[TempImagesController::class,'create'])->name('temp-images.create');
 
 Route::group(['prefix' => 'admin'],function(){
 
@@ -87,8 +101,7 @@ Route::group(['prefix' => 'admin'],function(){
         Route::put('/campaigns/{campaign}',[CampaignController::class,'update'])->name('campaigns.update');
         Route::delete('/campaigns/{campaign}',[CampaignController::class,'destroy'])->name('campaigns.delete');
 
-        //temp-images route
-        Route::post('/upload-temp-images',[TempImagesController::class,'create'])->name('temp-images.create');
+        
 
         //Gallery Route
         Route::get('/galleries',[GalleryController::class,'index'])->name('galleries.index');
@@ -97,6 +110,24 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('/galleries/{gallery}/edit',[GalleryController::class,'edit'])->name('galleries.edit');
         Route::put('/galleries/{gallery}',[GalleryController::class,'update'])->name('galleries.update');
         Route::delete('/galleries/{gallery}',[GalleryController::class,'destroy'])->name('galleries.delete');
+
+        //Users route
+        Route::get('/donation',[AdminDonationController::class,'index'])->name('admin.donation');
+
+        //Volunteers route
+        Route::get('/volunteers',[VolunteerController::class,'index'])->name('volunteers.index');
+        Route::get('/volunteers/{volunteer}/edit',[VolunteerController::class,'edit'])->name('volunteers.edit');
+        Route::put('/volunteers/{volunteer}',[VolunteerController::class,'update'])->name('volunteers.update');
+        Route::delete('/volunteers/{volunteer}',[VolunteerController::class,'destroy'])->name('volunteers.delete');
+
+        //Users route
+        Route::get('/withdrawlogs',[WithdrawLogsController::class,'index'])->name('admin.withdrawlogs');
+
+        //Users route
+        Route::get('/users',[UserManagementController::class,'index'])->name('usermanagement.index');
+
+        //Users route
+        Route::get('/report',[ReportController::class,'index'])->name('report');
 
     });
 
@@ -120,9 +151,30 @@ Route::group(['prefix' => 'user'],function(){
         Route::get('/campaigns/{campaign}/edit',[UserCampaignController::class,'edit'])->name('campaign.edit');
         Route::put('/campaigns/{campaign}',[UserCampaignController::class,'update'])->name('campaign.update');
         Route::delete('/campaigns/{campaign}',[UserCampaignController::class,'destroy'])->name('campaign.delete');
+
+        //Gallery Route
+        Route::get('/galleries',[UserGalleryController::class,'index'])->name('usergalleries.index');
+        Route::get('/galleries/create',[UserGalleryController::class,'create'])->name('usergalleries.create');
+        Route::post('/galleries',[UserGalleryController::class,'store'])->name('usergalleries.store');
+        Route::get('/galleries/{gallery}/edit',[UserGalleryController::class,'edit'])->name('usergalleries.edit');
+        Route::put('/galleries/{gallery}',[UserGalleryController::class,'update'])->name('usergalleries.update');
+        Route::delete('/galleries/{gallery}',[UserGalleryController::class,'destroy'])->name('usergalleries.delete');
+
+        //Profile Route
+        Route::get('/profile',[ProfileController::class,'index'])->name('user.profile');
+        Route::post('/profile',[ProfileController::class,'edit'])->name('profile.store');
+
+        //Donation Route
+        Route::get('/donations',[DonationController::class,'index'])->name('user.donations');
+
+        //Withdraw Request Route
+        Route::get('/withdraw',[WithdrawController::class,'index'])->name('user.withdraw');
         
     });
 
 });
+
+Route::get('/phonepe/payment',[PaymentController::class,'makePhonePePayment'])->name('phonepe.payment');
+Route::get('/phonepe/payment/callback',[PaymentController::class,'phonePeCallback'])->name('phonepe.payment.callback');
 
 require __DIR__.'/auth.php';

@@ -1,98 +1,49 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Campaign;
-use App\Models\Donation;
+use App\Http\Controllers\Controller;
 use App\Models\Volunteer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class HomeController extends Controller
+class VolunteerController extends Controller
 {
-    public function index(){
-        return view("home");
-    }
-    public function program(){
-        return view("program");
-    }
-    public function about(){
-        return view("about");
-    }
-    public function blog(){
-        return view("blog");
-    }
-    public function contact(){
-        return view("contact");
-    }
-    public function blog_details(){
-        return view("blog_details");
-    }
-    public function elements(){
-        return view("elements");
-    }
-    public function events(){
-        return view("events");
+    public function index(Request $request){
+        $volunteers = Volunteer::latest();
+
+        if(!empty($request->get('keyword'))){
+            $volunteers = $volunteers->where('name','like','%'.$request->get('keyword').'%');
+        }
+        $volunteers = $volunteers->paginate(10);
+
+        return view('admin.volunteer.list',compact('volunteers'));
     }
 
-    public function donate($campaignId, Request $request){
-        $campaign = Campaign::find($campaignId);
-       
-        return view("donate_now",compact('campaign'));
+    public function edit($volunteerId,Request $request){
+        $volunteer = Volunteer::find($volunteerId);
+        if(empty($volunteer)){
+            return redirect()->route('volunteers.index');
+           }
+           
+            return view('admin.volunteer.edit',compact('volunteer'));
     }
 
-    public function donation_store(Request $request){
-        $validator = Validator::make($request->all(),[
-            'campaign' => 'required',
-            'name' => 'required',
-            'address' => 'required',
-            'id_type' => 'required',
-            'idno' => 'required',
-            'contact' => 'required',
-            'amount' => 'required',
-            'transaction_id' => 'required',
+    public function update($volunteerId,Request $request){
+        $volunteer = Volunteer::find($volunteerId);
 
-        ]);
-
-        $campaign = Auth::campaign();
-        if($validator->passes()){
-
-            $donation = new Donation();
-            $donation->campaign = $request->campaign;
-            $donation->name = $request->name;
-            $donation->address = $request->address;
-            $donation->id_type = $request->id_type;
-            $donation->idno = $request->idno;
-            $donation->contact = $request->contact;
-            $donation->amount = $request->amount;
-            $donation->transaction_id = $request->transaction_id;
-            $donation->save();
-
-            $request->session()->flash('success','Your contribution can make people happy, Thanks for your contribution!');
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Donation successfully'
-            ]);
-
-        } else{
+        if(empty($volunteer)){
+            $request->session()->flash('error','volunteer not found');
             return response()->json([
                 'status' => false,
-                'errors' => $validator->errors()
+                'notfound' => true,
+                'message' => 'volunteer not found'
             ]);
         }
-    }
 
-    public function volunteers(){
-        return view("volunteers");
-    }
-
-    public function volunteer_store(Request $request){
         $validator = Validator::make($request->all(),[
-            
             'name' => 'required',
-            'email' => 'required|email|unique:volunteers',
+            'email' => 'required|email|unique:volunteers,email,' . $volunteerId,
             'id_type' => 'required',
             'uid' => 'required',
             'occupation' => 'required',
@@ -107,6 +58,7 @@ class HomeController extends Controller
 
         if($validator->passes()){
 
+            
             $volunteer = new Volunteer();
             $volunteer->name = $request->name;
             $volunteer->email = $request->email;
@@ -122,6 +74,7 @@ class HomeController extends Controller
             $volunteer->mother = $request->mother;
             $volunteer->father = $request->father;
             $volunteer->save();
+            // $oldImage = $volunteer->image;
 
             //save image here
             // if(!empty($request->image_id)){
@@ -142,14 +95,14 @@ class HomeController extends Controller
 
             //     $campaigns->image = $newImageName;
             //     $campaigns->save();
+            //     File::delete(public_path().'uploads/campaigns/'.$oldImage);
             // }
-
-
-            $request->session()->flash('success','You are now a volunteer');
+  
+            $request->session()->flash('success','volunteer updated successfully');
 
             return response()->json([
                 'status' => true,
-                'message' => 'Campaign created successfully'
+                'message' => 'volunteer updated successfully'
             ]);
 
         } else{
@@ -158,5 +111,27 @@ class HomeController extends Controller
                 'errors' => $validator->errors()
             ]);
         }
+    }
+
+    public function destroy($volunteerId,Request $request){
+        $volunteer = Volunteer::find($volunteerId);
+        if(empty($volunteer)){
+            $request->session()->flash('error','volunteer not found');
+            return response()->json([
+                'status' => true,
+                'message' => 'volunteer not found'
+            ]);
+         //return redirect()->route('categories.index');
+        }
+
+
+        $volunteer->delete();
+
+        $request->session()->flash('success','volunteer deleted successfully');
+
+        return response()->json([
+            'status' => true,
+            'message' => 'volunteer deleted successfully'
+        ]);
     }
 }
