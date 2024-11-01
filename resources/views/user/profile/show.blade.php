@@ -20,95 +20,78 @@
                   <br>
                   <div class="col-md-12 table-responsive">
                      <div class="card-body">
+                     @foreach ($users as $user)
                         <div class="row">
                            <div class="col-md-3">
                               <div class="form-group">
-                                 <img src="assets/img/profile.png" width="150" style="border-radius: 5px"><br><br>
-                                 <label for="exampleInputFile">Choose Profile</label>
-                                 <div class="input-group">
-                                    <div class="custom-file">
-                                       <input type="file" class="custom-file-input" id="exampleInputFile">
-                                       <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    </div>
-                                 </div>
+                                 <img src="{{asset('uploads/users/'.$user->image)}}" width="150" style="border-radius: 5px"><br><br>
+                                 <label for="exampleInputFile">Profile</label>
+                                 
                               </div>
                            </div>
                            <div class="col-md-9">
                               <div class="card-header">
                                  <span class="fa fa-user"> Profile Information</span>
                               </div>
+                              
                               <div class="row">
                                  <div class="col-md-4">
                                     <div class="form-group">
-                                       <label for="exampleInputEmail1">First Name</label>
-                                       <input type="email" class="form-control" placeholder="first name">
+                                       <label for="exampleInputEmail1">Name : &nbsp;</label>  
+                                       {{$user->name}}
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="col-md-4">
+                                    <div class="form-group">
+                                    <label for="exampleInputEmail1">ID Type : &nbsp;</label>
+                                    {{$user->id_type}}
                                     </div>
                                  </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
-                                       <label for="exampleInputEmail1">Middle Name</label>
-                                       <input type="email" class="form-control" placeholder="middle name">
+                                    <label for="exampleInputEmail1">ID No. : &nbsp;</label>
+                                    {{$user->idno}}
                                     </div>
                                  </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
-                                       <label for="exampleInputEmail1">Last Name</label>
-                                       <input type="email" class="form-control" placeholder="last name">
+                                    <label for="exampleInputEmail1">Gender : &nbsp;</label>
+                                    {{$user->gender}}
                                     </div>
                                  </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
-                                       <label>Gender</label>
-                                       <select class="form-control">
-                                          <option>Male</option>
-                                          <option>Female</option>
-                                       </select>
+                                       <label for="exampleInputEmail1">Date Of Birth : &nbsp;</label>
+                                       {{$user->dob}}
                                     </div>
                                  </div>
                                  <div class="col-md-4">
                                     <div class="form-group">
-                                       <label for="exampleInputEmail1">Birthday</label>
-                                       <input type="date" class="form-control" placeholder="last name">
-                                    </div>
-                                 </div>
-                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                       <label for="exampleInputEmail1">Contact</label>
-                                       <input type="number" class="form-control" placeholder="contact">
+                                       <label for="exampleInputEmail1">Contact : &nbsp;</label>
+                                       {{$user->phone}}
                                     </div>
                                  </div>
                                  <div class="col-md-6">
                                     <div class="form-group">
-                                       <label for="exampleInputEmail1">Email</label>
-                                       <input type="email" class="form-control" placeholder="email">
+                                       <label for="exampleInputEmail1">Email : &nbsp;</label>
+                                       {{$user->email}}
                                     </div>
                                  </div>
                                  <div class="col-md-6">
                                     <div class="form-group">
-                                       <label for="exampleInputEmail1">Address</label>
-                                       <input type="email" class="form-control" placeholder="address">
+                                       <label for="exampleInputEmail1">Address : &nbsp;</label>
+                                       {{$user->address}}
                                     </div>
                                  </div>
-                                 <div class="col-md-12">
-                                    <div class="card-header">
-                                       <span class="fa fa-key"> Account</span>
-                                    </div>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                       <label for="exampleInputEmail1">Username</label>
-                                       <input type="email" class="form-control" placeholder="username">
-                                    </div>
-                                 </div>
-                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                       <label for="exampleInputEmail1">Password</label>
-                                       <input type="email" class="form-control" placeholder="**********">
-                                    </div>
-                                 </div>
+                                 <div class="pb-5 pt-3">
+                                    <a href="{{route('profile.update',$user->id)}}" class="btn btn-outline-dark ml-3">Edit</a>
+                                </div>
+                                
                               </div>
                            </div>
                         </div>
+                        @endforeach
                      </div>
                      
                   </div>

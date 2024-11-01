@@ -1,6 +1,8 @@
 .carousel-item {
     height: 70vh;
     background-color: #cac4c4;
+    transition: 1s;
+    transform: inherit;
 }
 
 .carousel-item img {

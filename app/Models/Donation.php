@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Donation extends Model
 {
     use HasFactory;
+
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

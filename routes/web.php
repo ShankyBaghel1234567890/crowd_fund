@@ -42,8 +42,8 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/blogs', 'blog');
     Route::get('/blog_details', 'blog_details');
     Route::get('/about', 'about');
-    Route::get('/donate_now', 'donate')->name('donate');
-    Route::post('/donate_now', 'donation_store')->name('donation.store');
+    Route::get('/donate_now/{campaignId}', 'donate')->name('donate');
+    Route::post('/donate_now/{campaignId}', 'donation_store')->name('donation.store');
     Route::get('/volunteer', 'volunteers')->name('home.volunteer');
     Route::post('/volunteer', 'volunteer_store')->name('volunteer.store');
 
@@ -113,6 +113,7 @@ Route::group(['prefix' => 'admin'],function(){
 
         //Users route
         Route::get('/donation',[AdminDonationController::class,'index'])->name('admin.donation');
+        Route::delete('/donation/{donation}',[GalleryController::class,'destroy'])->name('donation.delete');
 
         //Volunteers route
         Route::get('/volunteers',[VolunteerController::class,'index'])->name('volunteers.index');
@@ -162,7 +163,8 @@ Route::group(['prefix' => 'user'],function(){
 
         //Profile Route
         Route::get('/profile',[ProfileController::class,'index'])->name('user.profile');
-        Route::post('/profile',[ProfileController::class,'edit'])->name('profile.store');
+        Route::get('/profile/{user}/update',[ProfileController::class,'edit'])->name('profile.update');
+        Route::put('/profile/{user}',[ProfileController::class,'store'])->name('profile.store');
 
         //Donation Route
         Route::get('/donations',[DonationController::class,'index'])->name('user.donations');

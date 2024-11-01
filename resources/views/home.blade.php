@@ -60,7 +60,6 @@
                                     <h1 data-animation="fadeInUp" data-delay=".6s">Our Helping to<br> the world.</h1>
                                     <p data-animation="fadeInUp" data-delay=".8s">It is a platform that enables individuals or groups to raise funds for specific projects, causes, or ventures by collecting small contributions from a large number of people.</p>
                                     <div class="hero__btn d-flex justify-content-center">
-                                        <a href="" class="btn hero-btn mb-10" data-animation="fadeInLeft" data-delay=".8s">Donate</a>
                                         <a href="" class="cal-btn ml-15" data-animation="fadeInRight" data-delay="1.0s">
                                             <i class="flaticon-null"></i>
                                             <p>+91 9336568268</p>
@@ -93,18 +92,18 @@
                             <span class="flaticon-null-1"></span>
                         </div>
                         <div class="cat-cap">
-                            <h5><a href="services.html">Child Medical Fund</a></h5>
+                            <h5><a href="">Child Medical Fund</a></h5>
                             <p> Donate here, to save some little one's life who doesn't even live to this world </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-cat active text-center mb-50">
+                    <div class="single-cat  text-center mb-50">
                         <div class="cat-icon">
                             <span class="flaticon-think"></span>
                         </div>
                         <div class="cat-cap">
-                            <h5><a href="services.html">Old People's Medical Fund</a></h5>
+                            <h5><a href="">Old People's Medical Fund</a></h5>
                             <p> Donate here, to save someone's Parent life.</p>
                         </div>
                     </div>
@@ -115,7 +114,7 @@
                             <span class="flaticon-gear"></span>
                         </div>
                         <div class="cat-cap">
-                            <h5><a href="services.html">Start-up Fund Raising</a></h5>
+                            <h5><a href="">Start-up Fund Raising</a></h5>
                             <p> Donate here and support the youth for starting thier own start-ups and buisness.</p>
                         </div>
                     </div>
@@ -169,7 +168,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="single-cases mb-40">
                         <div class="cases-img">
-                            <img src="childb.jpg" alt="">
+                            <img src="assets/img/childb.jpg" alt="">
                         </div>
                         <div class="cases-caption">
                             <h3><a href="#">Ensure Child Healthy Future</a></h3>
@@ -195,7 +194,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="single-cases mb-40">
                         <div class="cases-img">
-                            <img src="old.jpg" alt="">
+                            <img src="assets/img/old.jpg" alt="">
                         </div>
                         <div class="cases-caption">
                             <h3><a href="#">Providing Old People a Healthy Future</a></h3>
@@ -221,7 +220,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="single-cases mb-40">
                         <div class="cases-img">
-                            <img src="startup.jpg" alt="">
+                            <img src="assets/img/startup.jpg" alt="">
                         </div>
                         <div class="cases-caption">
                             <h3><a href="#">Invest in Young People Start-Ups</a></h3>

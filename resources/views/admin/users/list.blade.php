@@ -23,7 +23,7 @@
 							<form action="" method="get">
                                 <div class="card-header">
                                     <div class="card-title">
-                                        <button type="button" onclick="window.location.href='{{ route("campaign.index")}}'" class="btn btn-default btn-sm">Reset</button>
+                                        <button type="button" onclick="window.location.href='{{ route("usermanagement.index")}}'" class="btn btn-default btn-sm">Reset</button>
                                     </div>
                                     <div class="card-tools">
                                         <div class="input-group input-group" style="width: 250px;">
@@ -50,14 +50,16 @@
 										</tr>
 									</thead>
 									<tbody>
+									@if ($users->isNotEmpty())
+									@foreach ($users as $user)
                                         <tr>
-                                            <td><img src="assets/img/profile.png" width="50" alt="User Image"></td>
+                                            <td><img src="{{asset('uploads/users/'.$user->image)}}" width="50" alt="User Image"></td>
                                             <td>
-                                                <p class="info">Name: <b>James Andress</b></p>
-                                                <p class="info"><small>Contact: <b>098733526171</b></small></p>
-                                                <p class="info"><small>Email: <b>james@gmail.com</b></small></p>
+                                                <p class="info">Name: <b>{{$user->name}}</b></p>
+                                                <p class="info"><small>Contact: <b>{{$user->phone}}</b></small></p>
+                                                <p class="info"><small>Email: <b>{{$user->email}}</b></small></p>
                                             </td>
-                                            <td>Pasig, Metro Manila</td>
+                                            <td>{{$user->address}}</td>
                                             <td><span class="badge bg-success">active</span></td>
                                             <td class="text-right">
                                                 <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
@@ -66,11 +68,17 @@
                                                     class="fa fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
+										@endforeach
+										@else
+                                            <tr>
+                                                <td colspan="5">Records Not Found</td>
+                                            </tr>
+                                        @endif
 									</tbody>
 								</table>										
 							</div>
 							<div class="card-footer clearfix">
-                                
+							{{$users->links()}}
 								
 							</div>
 						</div>

@@ -414,7 +414,7 @@ hr {
   text-align: center;
   top: 50%;
   transform: translateY(-50%);
-  transition: all 0.3s ease 0s;
+  transition:100ms;
   width: 40px;
 }
 
@@ -3447,7 +3447,6 @@ hr {
 
 /* line 32, C:/Users/HP/Desktop/jun-2020/277.Charity _Non-profit/assets/scss/_h1-hero.scss */
 .slider-area {
-  background-image: url(../img/hero/h1_hero.png);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;

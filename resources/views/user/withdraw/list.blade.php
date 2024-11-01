@@ -23,7 +23,7 @@
 							<form action="" method="get">
                                 <div class="card-header">
                                     <div class="card-title">
-                                        <button type="button" onclick="window.location.href='{{ route("campaign.index")}}'" class="btn btn-default btn-sm">Reset</button>
+                                        <button type="button" onclick="window.location.href='{{ route("user.withdraw")}}'" class="btn btn-default btn-sm">Reset</button>
                                     </div>
                                     <div class="card-tools">
                                         <div class="input-group input-group" style="width: 250px;">
@@ -86,7 +86,7 @@
 
 					if(response['status'] == true){
 
-						window.location.href="{{route('campaign.index')}}";
+						window.location.href="{{route('user.withdraw')}}";
 					}
 				}
 			});

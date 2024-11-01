@@ -48,7 +48,7 @@
 											
                                             <div class="filtr-item col-sm-2" data-category="1" data-sort="white sample">
                                                 <a href="{{route('galleries.edit',$gallery->id)}}" data-toggle="lightbox" data-title="sample 1 - white">
-                                                    <img src="{{$gallery->name}}" class="img-fluid mb-2" alt="white sample"/>
+                                                    &nbsp;<img src="{{asset('uploads/gallery/'.$gallery->name)}}" class="img-fluid mb-2" alt="white sample"/> &nbsp;
                                                 </a>
                                                 <a href="#" onclick="deleteGallery({{$gallery->id}})" class="text-danger w-4 h-4 mr-1">
 													<svg wire:loading.remove.delay="" wire:target="" class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

@@ -42,20 +42,29 @@ class HomeController extends Controller
         return view("donate_now",compact('campaign'));
     }
 
-    public function donation_store(Request $request){
-        $validator = Validator::make($request->all(),[
+    public function donation_store($campaignId,Request $request){
+
+        $campaigns  = Campaign::find($campaignId);
+
+        if(empty($campaigns)){
+            $request->session()->flash('error','Record not found');
+            return response()->json([
+                'status' => false,
+                'notFound' => true
+            ]);
+        }
+        $validator = Validator::make($request->all(), [
             'campaign' => 'required',
             'name' => 'required',
             'address' => 'required',
             'id_type' => 'required',
             'idno' => 'required',
             'contact' => 'required',
-            'amount' => 'required',
+            'amount' => 'required|numeric',
             'transaction_id' => 'required',
-
         ]);
 
-        $campaign = Auth::campaign();
+        
         if($validator->passes()){
 
             $donation = new Donation();
