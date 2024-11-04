@@ -18,8 +18,9 @@
 			 
 			 @include('account.message')
 			<div class="card card-outline card-primary">
+			<a href="/" class="fas fa-sign-out-alt"></a>
 			  	<div class="card-header text-center">
-					<a href="#" class="h3">Login</a>
+					<a href="#" class="h3">Administrative Login</a>
 			  	</div>
 			  	<div class="card-body">
 					<p class="login-box-msg">Sign in to start your session</p>

@@ -64,7 +64,7 @@
                                             <td class="text-right">
                                                 <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
                                                     class="fa fa-user-edit"></i></a>
-                                                <a class="btn btn-sm btn-danger" href="#" data-toggle="modal" data-target="#delete"><i
+                                                <a class="btn btn-sm btn-danger" href="#" onclick="deleteUser({{$user->id}})" data-toggle="modal" data-target="#delete"><i
                                                     class="fa fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
@@ -92,8 +92,8 @@
 @section('customjs')
 
 <script>
-	function deleteCampaign(id){
-		var url = '{{route("campaign.delete","ID")}}';
+	function deleteUser(id){
+		var url = '{{route("usermanagement.delete","ID")}}';
 		var newUrl = url.replace("ID",id);
 		if(confirm('Are you sure want to delete')){
 			$.ajax({
@@ -108,7 +108,7 @@
 
 					if(response['status'] == true){
 
-						window.location.href="{{route('campaign.index')}}";
+						window.location.href="{{route('usermanagement.index')}}";
 					}
 				}
 			});

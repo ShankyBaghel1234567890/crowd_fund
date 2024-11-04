@@ -51,8 +51,8 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <input type="hidden" id="image_id" name="image_id" value="">
-                                                <label for="name">Banner</label>
-                                                <div id="name" class="dropzone dz-clickable">
+                                                <label for="image">Banner</label>
+                                                <div id="image" class="dropzone dz-clickable">
                                                     <div class="dz-message needsclick">
                                                         <br>Drop files here or click to upload.<br><br>
                                                     </div>
@@ -152,7 +152,7 @@ $("#galleryform").submit(function(event){
     });
 
     Dropzone.autoDiscover = false;    
-    const dropzone = $("#name").dropzone({ 
+    const dropzone = $("#image").dropzone({ 
         init: function() {
             this.on('addedfile', function(file) {
                 if (this.files.length > 1) {
@@ -162,7 +162,7 @@ $("#galleryform").submit(function(event){
         },
         url:  "{{route('temp-images.create')}}",
         maxFiles: 1,
-        paramName: 'name',
+        paramName: 'image',
         addRemoveLinks: true,
         acceptedFiles: "image/jpeg,image/png,image/gif",
         headers: {

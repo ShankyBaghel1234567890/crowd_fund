@@ -19,4 +19,27 @@ class UserManagementController extends Controller
 
         return view('admin.users.list',compact('users'));
     }
+
+    public function destroy($userId, Request $request){
+        $users = User::find($userId);
+        if(empty($users)){
+            $request->session()->flash('error','Image not found');
+            return response()->json([
+                'status' => true,
+                'message' => 'Image not found'
+            ]);
+            
+        }
+
+
+        $users->delete();
+
+        $request->session()->flash('success','Image  deleted successfully');
+
+        return response()->json([
+            'status' => true,
+            'message' => 'image deleted successfully'
+        ]);
+    }
 }
+

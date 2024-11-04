@@ -21,7 +21,7 @@ class GalleryController extends Controller
         $query = Gallery::query();
 
         if(!empty($request->get('keyword'))){
-            $gallery = $galleries->where('campaign','like','%'.$request->get('keyword').'%');
+            $galleries = $galleries->where('campaign','like','%'.$request->get('keyword').'%');
         }
         $paginate = $query->paginate(10);
         $data['galleries'] = $galleries;

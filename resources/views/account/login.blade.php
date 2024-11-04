@@ -22,6 +22,7 @@
 			 @endif
 			 @include('account.message')
 			<div class="card card-outline card-primary">
+			<a href="/" class="fas fa-sign-out-alt"></a>
 			  	<div class="card-header text-center">
 					<a href="#" class="h3">Login</a>
 			  	</div>

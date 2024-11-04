@@ -42,8 +42,8 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/blogs', 'blog');
     Route::get('/blog_details', 'blog_details');
     Route::get('/about', 'about');
-    Route::get('/donate_now/{campaignId}', 'donate')->name('donate');
-    Route::post('/donate_now/{campaignId}', 'donation_store')->name('donation.store');
+    Route::get('/donate_now', 'donate')->name('donate');
+    Route::post('/donate_now', 'donation_store')->name('donation.store');
     Route::get('/volunteer', 'volunteers')->name('home.volunteer');
     Route::post('/volunteer', 'volunteer_store')->name('volunteer.store');
 
@@ -123,9 +123,14 @@ Route::group(['prefix' => 'admin'],function(){
 
         //Users route
         Route::get('/withdrawlogs',[WithdrawLogsController::class,'index'])->name('admin.withdrawlogs');
+        Route::post('/withdrawlogs/{id}/approve', [WithdrawLogsController::class, 'approve'])->name('admin.withdrawlogs.approve');
+        Route::post('/withdrawlogs/{id}/reject', [WithdrawLogsController::class, 'reject'])->name('admin.withdrawlogs.reject');
+        Route::get('/withdrawlogs/{id}/edit', [WithdrawLogsController::class, 'edit'])->name('admin.withdrawlogs.edit');
+        Route::post('/withdrawlogs/{id}/update', [WithdrawLogsController::class, 'update'])->name('admin.withdrawlogs.update');
 
         //Users route
         Route::get('/users',[UserManagementController::class,'index'])->name('usermanagement.index');
+        Route::delete('/users/{user}',[UserManagementController::class,'destroy'])->name('usermanagement.delete');
 
         //Users route
         Route::get('/report',[ReportController::class,'index'])->name('report');
@@ -171,6 +176,8 @@ Route::group(['prefix' => 'user'],function(){
 
         //Withdraw Request Route
         Route::get('/withdraw',[WithdrawController::class,'index'])->name('user.withdraw');
+        // Route::get('/withdraw/request',[WithdrawController::class,'request'])->name('withdraw.request');
+        Route::post('/withdraw',[WithdrawController::class,'store'])->name('withdraw.store');
         
     });
 

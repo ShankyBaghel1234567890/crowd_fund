@@ -47,25 +47,33 @@
                                             <th>Date of Approval</th>
                                             <th>Requested By</th>
                                             <th>Status</th>
-                                            <th>Remarks</th>
 											<th width="130">Action</th>
 										</tr>
 									</thead>
 									<tbody>
-                                        <tr>
-                                            <td>Campaign 1</td>
-                                            <td>Php20,000</td>
-                                            <td>Oct 17, 2021</td>
-                                            <td>John Doe</td>
-                                            <td><span class="badge bg-danger">withdrawn</span></td>
-                                            <td>Remarks</td>
-                                            <td class="text-right">
-                                                <a class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#edit"><i
-                                                    class="fa fa-edit"></i></a>
-                                                <a class="btn btn-sm btn-danger" href="#" data-toggle="modal" data-target="#delete"><i
-                                                    class="fa fa-trash-alt"></i></a>
-                                            </td>
-                                        </tr>
+										@foreach ($withdrawals as $withdrawal)
+                        					<tr>
+												<td>{{ $withdrawal->campaign->name ?? 'N/A' }}</td>
+												<td>{{ number_format($withdrawal->amount, 2) }}</td>
+												<td>{{ $withdrawal->updated_at ? $withdrawal->updated_at->format('Y-m-d') : 'N/A' }}</td>
+												<td>{{ $withdrawal->user->name }}</td>
+												<td><span class="badge bg-{{ $withdrawal->status == 'withdrawn' ? 'danger' : ($withdrawal->status == 'rejected' ? 'red' : 'green') }}">{{ ucfirst($withdrawal->status) }}</span></td>
+												<td>
+													@if ($withdrawal->status == 'pending')
+														<form action="{{ route('admin.withdrawlogs.approve', $withdrawal->id) }}" method="POST" style="display: inline-block;">
+															@csrf
+															<button type="submit" class="btn btn-success btn-sm">Approve</button>
+														</form>
+														<form action="{{ route('admin.withdrawlogs.reject', $withdrawal->id) }}" method="POST" style="display: inline-block;">
+															@csrf
+															<button type="submit" class="btn btn-danger btn-sm">Reject</button>
+														</form>
+													@else
+													<a class="btn btn-primary btn-sm">Done</a>
+													@endif
+												</td>
+											</tr>
+										@endforeach
 									</tbody>
 								</table>										
 							</div>

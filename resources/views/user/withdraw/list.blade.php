@@ -20,7 +20,9 @@
 					<div class="container-fluid">
                         @include('account.message')
 						<div class="card">
-							<form action="" method="get">
+						@foreach ($campaigns as $campaign)
+							<form action="{{ route('withdraw.store') }}" method="post" id="withdrawform-{{ $campaign->id }}" name="withdrawform">
+							@csrf
                                 <div class="card-header">
                                     <div class="card-title">
                                         <button type="button" onclick="window.location.href='{{ route("user.withdraw")}}'" class="btn btn-default btn-sm">Reset</button>
@@ -37,23 +39,59 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-							<div class="card-body table-responsive p-0">								
-								<table class="table table-hover text-nowrap">
-									<thead>
-										<tr>
-											<th>Campaign Name</th>
-											<th>Total Amount</th>
-                                            <th>Date of Approval</th>
-                                            <th>Status</th>
-                                            <th>Remarks</th>
-											<th width="130">Action</th>
-										</tr>
-									</thead>
-									<tbody>
-                                        
-									</tbody>
-								</table>										
+								<div class="card-body table-responsive p-0">								
+									<table class="table table-hover text-nowrap">
+										<thead>
+											<tr>
+												<th>Campaign Name</th>
+												<th>Date of Approval</th>
+												<th>Total Amount</th>
+												<th>Status</th>
+												<th width="130">Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th>{{ $campaign->name }}</th>
+												<th>{{ $campaign->last_updated ? $campaign->last_updated->format('Y-m-d H:i:s') : 'N/A' }}</th>
+												<th>${{ number_format($campaign->total_donated, 2) }}</th>
+												<th>
+													@php
+														// Check if there's a pending withdrawal for this campaign
+														$withdrawal = $withdraws->where('campaign_id', $campaign->id)->first();
+													@endphp
+													@if ($withdrawal)
+														
+															@if ($withdrawal->status == 'completed')
+															<span class="badge bg-danger">withdrawn</span>
+															@elseif($withdrawal->status == 'rejected')
+															<span class="badge bg-red">Rejected</span>
+															@else
+															<span class="badge bg-green">Pending</span>
+															@endif
+														
+													@else
+															<span class="badge bg-blue">Approve</span>
+													@endif
+												</th>
+												<th>
+												@if ($withdrawal->status == 'completed')
+													<span class="badge bg-danger">Completed</span>
+													@elseif($withdrawal->status == 'rejected')
+													<span class="badge bg-red">Abort</span>
+													@elseif($withdrawal->status == 'pending')
+													<span class="badge bg-green">Requested</span>
+												@else
+													<input type="hidden" name="campaign_id" value="{{ $campaign->id }}">
+													<button type="submit" onclick="submitWithdrawForm({{ $campaign->id }})" class="btn btn-primary">Request Withdrawl</button>
+												@endif
+												</th>
+											</tr>
+										</tbody>
+									</table>
+                            	</form>
+												
+							@endforeach										
 							</div>
 							<div class="card-footer clearfix">
                                 
@@ -70,28 +108,31 @@
 @section('customjs')
 
 <script>
-	function deleteCampaign(id){
-		var url = '{{route("campaign.delete","ID")}}';
-		var newUrl = url.replace("ID",id);
-		if(confirm('Are you sure want to delete')){
-			$.ajax({
-				url: newUrl,
-				type: 'delete',
-				data: {},
-				dataType: 'json',
-				headers: {
-                	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        		},
-				success:function(response){
+	function submitWithdrawForm(campaignId) {
+    var form = $("#withdrawform-" + campaignId);
+    form.submit(function(event) {
+        event.preventDefault();
+        $("button[type=submit]").prop('disabled', true);
 
-					if(response['status'] == true){
-
-						window.location.href="{{route('user.withdraw')}}";
-					}
-				}
-			});
-		}
-	}
+        $.ajax({
+            url: '{{ route("withdraw.store") }}',
+            type: 'post',
+            data: form.serialize(),
+            dataType: 'json',
+            success: function(response) {
+                $("button[type=submit]").prop('disabled', false);
+                if (response.success) {
+                    alert(response.success);
+                    window.location.href = "{{ route('user.withdraw') }}";
+                }
+            },
+            error: function(jqXHR, exception) {
+                $("button[type=submit]").prop('disabled', false);
+                alert(jqXHR.responseJSON.error);
+            }
+        });
+    });
+}
 </script>
 
 @endsection

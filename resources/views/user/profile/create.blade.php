@@ -25,6 +25,7 @@
                         <div class="row">
                            <div class="col-md-3">
                               <div class="mb-3">
+                                 <input type="hidden" id="image_id" name="image_id" value="">
                                     <label for="image">Profile</label>
                                     <div id="image" class="dropzone dz-clickable">
                                        <div class="dz-message needsclick">

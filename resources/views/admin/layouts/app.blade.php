@@ -75,7 +75,7 @@
 			<!-- /.content-wrapper -->
 			<footer class="main-footer">
 				
-				<strong>Copyright &copy;  All rights reserved.
+				<strong>Copyright &copy; <a href="">Crowd Funding</a> All rights reserved.
 			</footer>
 			
 		</div>
@@ -90,6 +90,8 @@
 		<script src="{{asset('login-assets/plugins/dropzone/min/dropzone.min.js')}}"></script>
 		<!-- AdminLTE for demo purposes -->
 		<script src="{{asset('login-assets/js/demo.js')}}"></script>
+
+		<script src="{{asset('login-assets/js/chart.js')}}"></script>
 
 		<script type="text/javascript">
 			$.ajaxSetup({

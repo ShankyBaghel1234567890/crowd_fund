@@ -7,7 +7,7 @@
 					<div class="container-fluid my-2">
 						<div class="row mb-2">
 							<div class="col-sm-6  ">
-								<h1>Users</h1>
+								<h1>Report</h1>
 							</div>
 							
 						</div>
@@ -21,79 +21,75 @@
                   <div class="col-12 col-md-12 col-lg-12 col-xl-12">
                      <div class="card">
                         <div class="card-body">
-                           <div class="chart-title">
-                              <h4>Raise per Month</h4><br>
+                           
+                           <div class="container mt-5">
+                              <h1 class="text-center">Total Raised Funds for {{ $year }}</h1>
+                              <canvas id="fundsChart" width="400" height="200"></canvas>
                            </div>
-                           <canvas id="bargraph"></canvas>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
-      </div>
       </section>
-   </div>
-   </div>
-   <!-- jQuery -->
-   <script src="login-assets/jquery.min.js"></script>
-   <script src="login-assets/js/adminlte.js"></script>
-   <script src="login-assets/js/chart.js"></script>
-   <script>
-      document.addEventListener("DOMContentLoaded", function () {
-         // Bar Chart
-         var barChartData = {
-            labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novermber", "December"],
-            datasets: [{
-               label: 'Income',
-               backgroundColor: 'rgb(79,129,189)',
-               borderColor: 'rgba(0, 158, 251, 1)',
-               borderWidth: 1,
-               data: [15000, 2300, 5500, 17000, 25000, 30000, 2000, 15000, 22000, 34000, 35000, 55000]
-            }]
-         };
 
-         var ctx = document.getElementById('bargraph').getContext('2d');
-         window.myBar = new Chart(ctx, {
-            type: 'bar',
-            data: barChartData,
-            options: {
-               responsive: true,
-               legend: {
-                  display: false,
-               }
-            }
-         });
-
-      });
-   </script>
+  
 			
 @endsection
 
 @section('customjs')
 
 <script>
-	function deleteCampaign(id){
-		var url = '{{route("campaign.delete","ID")}}';
-		var newUrl = url.replace("ID",id);
-		if(confirm('Are you sure want to delete')){
-			$.ajax({
-				url: newUrl,
-				type: 'delete',
-				data: {},
-				dataType: 'json',
-				headers: {
-                	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        		},
-				success:function(response){
+        // Prepare monthly totals data for Chart.js
+        const monthlyTotals = @json($monthlyTotals);
+        const ctx = document.getElementById('fundsChart').getContext('2d');
+        
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'January', 'February', 'March', 'April', 'May', 'June', 
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                ],
+                datasets: [{
+                    label: 'Total Raised Funds (₹)',
+                    data: monthlyTotals,
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Amount in INR'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Months'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Monthly Total Raised Funds for ' + '{{ $year }}'
+                    }
+                }
+            }
+        });
+    </script>
 
-					if(response['status'] == true){
-
-						window.location.href="{{route('campaign.index')}}";
-					}
-				}
-			});
-		}
-	}
-</script>
+ 
 
 @endsection

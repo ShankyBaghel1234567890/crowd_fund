@@ -17,4 +17,11 @@ class Donation extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+
+    public static function totalRaisedInMonth($month, $year)
+    {
+        return self::whereYear('created_at', $year)
+                   ->whereMonth('created_at', $month)
+                   ->sum('amount');
+    }
 }
