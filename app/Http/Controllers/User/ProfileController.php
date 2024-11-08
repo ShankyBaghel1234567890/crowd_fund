@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class ProfileController extends Controller
 {
@@ -80,10 +82,11 @@ class ProfileController extends Controller
                 File::copy($sPath,$dPath);
 
             //     //Generate image thumbnail
-            //     // $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
-            //     // $img = Image::make($sPath);
-            //     // $img->resize(450, 600);
-            //     // $img->save($dPath);
+                $dPath = public_path().'/uploads/users/thumb/'.$newImageName;
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($sPath);
+                $image->cover(200,250);
+                $image->save($dPath);
 
                 $users->image = $newImageName;
                 $users->save();

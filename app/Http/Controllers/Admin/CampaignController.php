@@ -68,7 +68,7 @@ class CampaignController extends Controller
                 $dPath = public_path().'/uploads/campaigns/thumb/'.$newImageName;
                 $manager = new ImageManager(new Driver());
                 $image = $manager->read($sPath);
-                $image->cover(450,600);
+                $image->cover(300,275);
                 $image->save($dPath);
 
                 $campaigns->image = $newImageName;
@@ -150,15 +150,17 @@ class CampaignController extends Controller
                 File::copy($sPath,$dPath);
 
             //     //Generate image thumbnail
-            //     // $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
-            //     // $img = Image::make($sPath);
-            //     // $img->resize(450, 600);
-            //     // $img->save($dPath);
+                $dPath = public_path().'/uploads/campaigns/thumb/'.$newImageName;
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($sPath);
+                $image->cover(300,275);
+                $image->save($dPath);
 
                 $campaigns->image = $newImageName;
                 $campaigns->save();
 
                 File::delete(public_path().'uploads/campaigns/'.$oldImage);
+                File::delete(public_path().'uploads/campaigns/thumb/'.$oldImage);
             }
 
             

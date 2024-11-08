@@ -13,21 +13,25 @@ class DonationController extends Controller
 {
     public function index(Request $request)
 {
-    $user = Auth::user();
+    //SELECT * FROM `donations` WHERE campaign_id IN (SELECT id FROM `campaigns` WHERE user_id = 4);
+        $user = Auth::user();
+        $campaigns = Campaign::where('user_id',$user->id)->pluck('id')->toArray();
+        // $donations = Donation::where('campaign_id',$campaigns)->orderBy('created_at','DESC')->get();
+        $query = Donation::whereIn('campaign_id', $campaigns)
+                     ->orderBy('created_at', 'DESC');
 
-    // Fetch donations belonging to the user's campaigns with keyword filtering
-    $donations = Donation::whereHas('campaign', function ($query) use ($user) {
-            $query->where('user_id', $user->id);
-        })
-        ->when($request->filled('keyword'), function ($query) use ($request) {
+        if($request->has('keyword') && !empty($request->get('keyword'))){
             $query->where('name', 'like', '%' . $request->get('keyword') . '%');
-        })
-        ->paginate(10); // Apply pagination directly here
+        }
+        $donations = $query->get();
+        // $donations = $query->paginate(10);
+        // $data['donations'] = $donations;
+        // $data['paginate'] = $donations;
 
-    return view('user.donation.list', ['donations' => $donations]);
+    return view('user.donation.list', compact('donations'));
 }
 
-    public function view(User $user, Donation $donation) {
-        return $user->id === $donation->campaign->user_id;
-    }
+    // public function view(User $user, Donation $donation) {
+    //     return $user->id === $donation->campaign->user_id;
+    // }
 }

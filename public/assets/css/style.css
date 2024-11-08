@@ -3013,62 +3013,62 @@ hr {
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   /* line 3, C:/Users/HP/Desktop/jun-2020/277.Charity _Non-profit/assets/scss/_headerMenu.scss */
   .header-area {
-    box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+    box-shadow: 0 8px 12px rgba(25, 25, 25, 0.1);
   }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   /* line 3, C:/Users/HP/Desktop/jun-2020/277.Charity _Non-profit/assets/scss/_headerMenu.scss */
   .header-area {
-    box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+    box-shadow: 0 8px 12px rgba(25, 25, 25, 0.1);
   }
 }
 
 @media (max-width: 575px) {
   /* line 3, C:/Users/HP/Desktop/jun-2020/277.Charity _Non-profit/assets/scss/_headerMenu.scss */
   .header-area {
-    box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+    box-shadow: 0 8px 12px rgba(25, 25, 25, 0.1);
   }
 }
 
 /* line 14, C:/Users/HP/Desktop/jun-2020/277.Charity _Non-profit/assets/scss/_headerMenu.scss */
 .header-area .header-top {
-  padding: 9px 130px;
+  padding: 4px 130px;
   border-bottom: 1px solid #f0f1f2;
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
   /* line 14, C:/Users/HP/Desktop/jun-2020/277.Charity _Non-profit/assets/scss/_headerMenu.scss */
   .header-area .header-top {
-    padding: 9px 30px;
+    padding: 4px 30px;
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   /* line 14, C:/Users/HP/Desktop/jun-2020/277.Charity _Non-profit/assets/scss/_headerMenu.scss */
   .header-area .header-top {
-    padding: 9px 15px;
+    padding: 4px 15px;
   }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   /* line 14, C:/Users/HP/Desktop/jun-2020/277.Charity _Non-profit/assets/scss/_headerMenu.scss */
   .header-area .header-top {
-    padding: 9px 50px;
+    padding: 4px 50px;
   }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   /* line 14, C:/Users/HP/Desktop/jun-2020/277.Charity _Non-profit/assets/scss/_headerMenu.scss */
   .header-area .header-top {
-    padding: 9px 20px;
+    padding: 4px 20px;
   }
 }
 
 @media (max-width: 575px) {
   /* line 14, C:/Users/HP/Desktop/jun-2020/277.Charity _Non-profit/assets/scss/_headerMenu.scss */
   .header-area .header-top {
-    padding: 9px 0px;
+    padding: 4px 0px;
   }
 }
 
@@ -3079,7 +3079,7 @@ hr {
   margin-right: 18px;
   padding-right: 18px;
   border-right: 1px solid #687693;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1;
   font-weight: 500;
 }
@@ -3232,7 +3232,7 @@ hr {
 .main-header .main-menu ul li a {
   color: #072366;
   font-weight: 400;
-  padding: 39px 19px;
+  padding: 15px 15px;
   display: block;
   font-size: 16px;
   -webkit-transition: 0.3s;

@@ -1,0 +1,130 @@
+/* Container styling */
+.container-fluid {
+    background-color: #f9f9f9;
+}
+
+/* Card styling */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Card body padding */
+.card-body {
+    padding: 20px;
+}
+
+/* Label styling */
+label {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Form control styling */
+.form-control {
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+}
+
+/* Form control focus effect */
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* Dropzone styling */
+.dropzone {
+    background: #f0f0f0;
+    border: 2px dashed #007bff;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.dropzone:hover {
+    background-color: #e7f1ff;
+}
+
+.dz-message {
+    font-weight: bold;
+    color: #666;
+}
+
+/* Button styling */
+.btno {
+    background: #09cc7f;
+    font-family: "Muli", sans-serif;
+    text-transform: capitalize;
+    padding : 27px 44px;
+    width: 200px;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 5px;
+    line-height: 1;
+    -moz-user-select: none;
+    letter-spacing: 1px;
+    line-height: 0;
+    margin-bottom: 0;
+    transition: color 0.4s linear;
+    position: relative;
+    z-index: 1;
+    border: 0;
+    overflow: hidden;
+    margin: 20px;
+  }
+  
+
+.btno::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 101%;
+    height: 101%;
+    background: #24ac75;
+    z-index: 1;
+    border-radius: 5px;
+    transition: transform 0.5s;
+    transition-timing-function: ease;
+    transform-origin: 0 0;
+    transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+    transform: scaleX(0);
+    border-radius: 5px;
+  }
+
+.btno:hover::before {
+    transform: scaleX(1);
+    color: #fff !important;
+    z-index: -1;
+  }
+
+  .btno:hover {
+    background-position: right;
+  }
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 10px;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .btno {
+        width: 100%;
+        font-size: 16px;
+    }
+}

@@ -9,7 +9,10 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use App\Models\EmailVerification;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -71,11 +74,15 @@ class LoginController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
 
-            session()->flash('success','You have been registered successfully.');
-            return response()->json([
-                'status' => true
-            ]);
+            request()->session()->flash('success', 'You are registered successfully');
             return redirect()->route('login');
+             
+            // return response()->json([
+            //     'status' => true,
+            //     'message' => 'Account created successfully'
+            // ]);
+            
+            
         }
         else{
             return response()->json([
@@ -85,4 +92,7 @@ class LoginController extends Controller
         }
 
     }
+
+
+
 }

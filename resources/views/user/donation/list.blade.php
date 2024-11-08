@@ -46,29 +46,23 @@
 											<th>Donated by</th>
                                             <th>Amount</th>
                                             <th>Date</th>
-											<th width="130">Action</th>
 										</tr>
 									</thead>
 									<tbody>
 										@if ($donations->isNotEmpty())
 											@foreach ($donations as $donation)
-												@can('view', $donation)
+												
 													<tr>
-														<td>{{$donation->campaign}}</td>
+														<td>{{$donation->campaign->name}}</td>
 														<td>{{$donation->name}}</td>
 														<td>{{$donation->amount}}</td>
-														<td>{{ $request->created_at->format('Y-m-d H:i:s') }}</td>
-														<td>
-															
-															<a href="#" onclick="deleteDonation({{$donation->id}})" class="text-danger w-4 h-4 mr-1">
-																<svg wire:loading.remove.delay="" wire:target="" class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-																	<path	ath fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-																</svg>
-															</a>
-														</td>
+														<td>{{ $donation->created_at }}</td>
+														
 													</tr>
-												@endcan
+												
 											@endforeach
+											@else
+											<p>No donations found.</p>
 										@endif
 									</tbody>
 								</table>										
@@ -88,28 +82,7 @@
 @section('customjs')
 
 <script>
-	function deleteCampaign(id){
-		var url = '{{route("campaign.delete","ID")}}';
-		var newUrl = url.replace("ID",id);
-		if(confirm('Are you sure want to delete')){
-			$.ajax({
-				url: newUrl,
-				type: 'delete',
-				data: {},
-				dataType: 'json',
-				headers: {
-                	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        		},
-				success:function(response){
-
-					if(response['status'] == true){
-
-						window.location.href="{{route('campaign.index')}}";
-					}
-				}
-			});
-		}
-	}
+	
 </script>
 
 @endsection

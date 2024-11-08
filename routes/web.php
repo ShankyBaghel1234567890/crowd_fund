@@ -42,7 +42,7 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/blogs', 'blog');
     Route::get('/blog_details', 'blog_details');
     Route::get('/about', 'about');
-    Route::get('/donate_now', 'donate')->name('donate');
+    Route::get('/donate_now/{campaign}', 'donate')->name('donate');
     Route::post('/donate_now', 'donation_store')->name('donation.store');
     Route::get('/volunteer', 'volunteers')->name('home.volunteer');
     Route::post('/volunteer', 'volunteer_store')->name('volunteer.store');
@@ -56,6 +56,7 @@ Route::group(['middleware' => 'guest'],function(){
 
     Route::get('/register',[LoginController::class,'create'])->name('auth.register');
     Route::post('/authentication',[LoginController::class,'register'])->name('register.store');
+    
 
 });
 

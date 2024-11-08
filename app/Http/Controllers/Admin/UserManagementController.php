@@ -34,7 +34,7 @@ class UserManagementController extends Controller
 
         $users->delete();
 
-        $request->session()->flash('success','Image  deleted successfully');
+        $request->session()->flash('success','Account  deleted successfully');
 
         return response()->json([
             'status' => true,

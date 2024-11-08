@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Register</title>
+		<link rel="shortcut icon" type="image/x-icon" href="{{asset('login-assets/img/favicon.ico')}}">
 		<!-- Google Font: Source Sans Pro -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 		<!-- Font Awesome -->
@@ -20,10 +21,10 @@
 					{{Session::get('success')}}
 				</div>
 			 @endif
-			 @include('account.message')
+			 
 			<div class="card card-outline card-primary">
 			  	<div class="card-header text-center">
-					<a href="#" class="h3">Register</a>
+					<a href="/register" class="h3">Register</a>
 			  	</div>
 			  	<div class="card-body">
 					<p class="login-box-msg">Sign up to start your session</p>
@@ -33,7 +34,7 @@
 							<input type="text" value="{{old('text')}}" name="name" id="name" class="form-control @error ('name') is-invalid @enderror" placeholder="Name">
 							<div class="input-group-append">
 					  			<div class="input-group-text">
-									<span class="fas fa-envelope"></span>
+									<span class="fas fa-user"></span>
 					  			</div>
 							</div>
 							<p></p>
@@ -51,7 +52,7 @@
 							<input type="number" value="{{old('number')}}" name="phone" id="phone" class="form-control @error ('phone') is-invalid @enderror" placeholder="Phone No.">
 							<div class="input-group-append">
 					  			<div class="input-group-text">
-									<span class="fas fa-envelope"></span>
+									<span class="fas fa-phone"></span>
 					  			</div>
 							</div>
 							<p></p>
@@ -60,7 +61,7 @@
 							<input type="password" name="password" id="password" class="form-control @error ('password') is-invalid @enderror" placeholder="Password">
 							<div class="input-group-append">
 					  			<div class="input-group-text">
-									<span class="fas fa-envelope"></span>
+									<span class="fas fa-key"></span>
 					  			</div>
 							</div>
 							<pp>
@@ -69,7 +70,7 @@
 							<input type="password" name="password_confirmation" id="password_confirmation" class="form-control @error ('password_confirmation') is-invalid @enderror" placeholder="Confirm Password">
 							<div class="input-group-append">
 					  			<div class="input-group-text">
-									<span class="fas fa-envelope"></span>
+									<span class="fas fa-key"></span>
 					  			</div>
 							</div>
 							<p></p>
@@ -107,7 +108,96 @@
 			</div>
 			<!-- /.card -->
 		</div>
+		<script>
+			$("#registrationform").submit(function(event){
+        event.preventDefault();
+        var element = $(this)
+        $("button[type=submit]").prop('disable',true);
+        $.ajax({
+            url: '{{route("register.store")}}',
+            type: 'post',
+            data: element.serializeArray(),
+            dataType: 'json',
+            success:function(response){
+                $("button[type=submit]").prop('disable',false);
 
+                if(response['status'] == true){
+
+                    window.location.href="{{route('login')}}";
+
+                    
+
+                    $("#name").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+
+                    $("#email").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+
+                    $("#phone").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+
+                    $("#password").removeClass('is-invalid')
+                    .siblings('p')
+                    .removeClass('invalid-feedback').html("");
+
+                    
+                }
+                // else{
+
+                // //     var errors =response['errors']
+                
+
+                // // if(errors['name']){
+                // //     $("#name").addClass('is-invalid')
+                // //     .siblings('p')
+                // //     .addClass('invalid-feedback').html(errors['name']);
+                // // }else{
+                // //     $("#name").removeClass('is-invalid')
+                // //     .siblings('p')
+                // //     .removeClass('invalid-feedback').html("");
+                // // }
+
+                // // if(errors['email']){
+                // //     $("#email").addClass('is-invalid')
+                // //     .siblings('p')
+                // //     .addClass('invalid-feedback').html(errors['email']);
+                // // }else{
+                // //     $("#email").removeClass('is-invalid')
+                // //     .siblings('p')
+                // //     .removeClass('invalid-feedback').html("");
+                // // }
+
+                // // if(errors['phone']){
+                // //     $("#phone").addClass('is-invalid')
+                // //     .siblings('p')
+                // //     .addClass('invalid-feedback').html(errors['phone']);
+                // // }else{
+                // //     $("#phone").removeClass('is-invalid')
+                // //     .siblings('p')
+                // //     .removeClass('invalid-feedback').html("");
+                // // }
+
+                // // if(errors['password']){
+                // //     $("#password").addClass('is-invalid')
+                // //     .siblings('p')
+                // //     .addClass('invalid-feedback').html(errors['password']);
+                // // }else{
+                // //     $("#password").removeClass('is-invalid')
+                // //     .siblings('p')
+                // //     .removeClass('invalid-feedback').html("");
+                // // }
+
+                // }
+                
+            }, error:function(jqXHR,exception){
+                console.log("Something went wrong")
+            }
+        })
+    });
+		</script>
 		<!-- ./wrapper -->
 		<!-- jQuery -->
 		<script src="{{asset('login-assets/plugins/jquery/jquery.min.js')}}"></script>
@@ -118,69 +208,7 @@
 		<!-- AdminLTE for demo purposes -->
 		{{--<script src="js/demo.js"></script>--}}
 
-		<script type="text/javascript">
-
-			$("#registrationform").submit(function(){
-				event.preventDefault();
-				$.ajax({
-					url: '{{route("register.store")}}',
-					type: 'post',
-					data: $(this).serializeArray(),
-					dataType: 'json',
-					success: function(response){
-						
-						var errors =response.errors;
-						
-						if(response.status == false){
-							if(errors.name){
-								$("#name").siblings("p").addClass('invalid-feedback').html(errors.name);
-								$("#name").addClass('is-invalid');
-							}
-							else{
-								$("#name").siblings("p").removeClass('invalid-feedback').html('');
-								$("#name").removeClass('is-invalid');
-							}
-
-							if(errors.name){
-								$("#email").siblings("p").addClass('invalid-feedback').html(errors.name);
-								$("#email").addClass('is-invalid');
-							}
-							else{
-								$("#email").siblings("p").removeClass('invalid-feedback').html('');
-								$("#email").removeClass('is-invalid');
-							}
-
-							if(errors.name){
-								$("#password").siblings("p").addClass('invalid-feedback').html(errors.name);
-								$("#password").addClass('is-invalid');
-							}
-							else{
-								$("#password").siblings("p").removeClass('invalid-feedback').html('');
-								$("#password").removeClass('is-invalid');
-							}
-						} else{
-							
-
-							$("#name").siblings("p").removeClass('invalid-feedback').html('');
-							$("#name").removeClass('is-invalid');
-
-							$("#email").siblings("p").addClass('invalid-feedback').html(errors.name);
-							$("#email").addClass('is-invalid');
-
-							$("#password").siblings("p").removeClass('invalid-feedback').html('');
-							$("#password").removeClass('is-invalid');
-
-							window.location.href="{{route('login')}}";
-						}
-						
-					},
-					error: function(jQXHR, exceptionr){
-						console.log("Something went wrong");
-					}
-					});
-				});
-
-		</script>
+		
 
 	</body>
 </html>

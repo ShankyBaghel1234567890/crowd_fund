@@ -36,12 +36,6 @@ class WithdrawController extends Controller
         return view ('user.withdraw.list', $data);
     }
 
-    // public function request(){
-
-    //     $donations = Donation::get()->all();
-    //     $data['donations'] =   $donations;
-    //     return view ('user.withdraw.request',$data);
-    // }
 
     public function store(Request $request){
         $user = Auth::user();

@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class CampaignController extends Controller
 {
@@ -66,10 +68,11 @@ class CampaignController extends Controller
                 File::copy($sPath,$dPath);
 
             //     //Generate image thumbnail
-            //     // $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
-            //     // $img = Image::make($sPath);
-            //     // $img->resize(450, 600);
-            //     // $img->save($dPath);
+                $dPath = public_path().'/uploads/campaigns/thumb/'.$newImageName;
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($sPath);
+                $image->cover(300,300);
+                $image->save($dPath);
 
                 $campaigns->image = $newImageName;
                 $campaigns->save();
@@ -150,15 +153,17 @@ class CampaignController extends Controller
                 File::copy($sPath,$dPath);
 
             //     //Generate image thumbnail
-            //     // $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
-            //     // $img = Image::make($sPath);
-            //     // $img->resize(450, 600);
-            //     // $img->save($dPath);
+                $dPath = public_path().'/uploads/volunteers/thumb/'.$newImageName;
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($sPath);
+                $image->cover(300,275);
+                $image->save($dPath);
 
                 $campaigns->image = $newImageName;
                 $campaigns->save();
 
                 File::delete(public_path().'uploads/campaigns/'.$oldImage);
+                File::delete(public_path().'uploads/campaigns/thumb'.$oldImage);
             }
 
             

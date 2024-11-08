@@ -28,7 +28,7 @@
 					
 									<div class="info-box-content">
 									<span class="info-box-text">Total Users</span>
-									<span class="info-box-number">10</span>
+									<span class="info-box-number">{{$user}}</span>
 									</div>
 									<!-- /.info-box-content -->
 								</div>
@@ -39,8 +39,8 @@
 									<span class="info-box-icon bg-info elevation-1"><i class="fas fa-calendar-week"></i></span>
 					
 									<div class="info-box-content">
-									<span class="info-box-text">Total Events</span>
-									<span class="info-box-number">10</span>
+									<span class="info-box-text">Total Donation</span>
+									<span class="info-box-number">{{$donor}}</span>
 									</div>
 									<!-- /.info-box-content -->
 								</div>
@@ -52,7 +52,7 @@
 					
 									<div class="info-box-content">
 									<span class="info-box-text">Total Campaign</span>
-									<span class="info-box-number">10</span>
+									<span class="info-box-number">{{$campaign}}</span>
 									</div>
 									<!-- /.info-box-content -->
 								</div>
@@ -63,8 +63,8 @@
 									<span class="info-box-icon bg-danger elevation-1"><i class="fas fa-users"></i></span>
 					
 									<div class="info-box-content">
-									<span class="info-box-text">Total Members</span>
-									<span class="info-box-number">10</span>
+									<span class="info-box-text">Total Volunteer</span>
+									<span class="info-box-number">{{$volunteer}}</span>
 									</div>
 									<!-- /.info-box-content -->
 								</div>

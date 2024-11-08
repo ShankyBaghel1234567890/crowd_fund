@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\TempImage;
 use App\Models\Volunteer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class VolunteerController extends Controller
 {
@@ -74,29 +78,31 @@ class VolunteerController extends Controller
             $volunteer->mother = $request->mother;
             $volunteer->father = $request->father;
             $volunteer->save();
-            // $oldImage = $volunteer->image;
+            $oldImage = $volunteer->image;
 
-            //save image here
-            // if(!empty($request->image_id)){
-            //     $tempImage = TempImage::find($request->image_id);
-            //     $extArray = explode('.',$tempImage->name);
-            //     $ext = last($extArray);
+            // save image here
+            if(!empty($request->image_id)){
+                $tempImage = TempImage::find($request->image_id);
+                $extArray = explode('.',$tempImage->name);
+                $ext = last($extArray);
 
-            //     $newImageName = $campaigns->id.'.'.$ext;
-            //     $sPath = public_path().'/temp/'.$tempImage->name;
-            //     $dPath = public_path().'/uploads/campaigns/'.$newImageName;
-            //     File::copy($sPath,$dPath);
+                $newImageName = $volunteer->id.'.'.$ext;
+                $sPath = public_path().'/temp/'.$tempImage->name;
+                $dPath = public_path().'/uploads/volunteers/'.$newImageName;
+                File::copy($sPath,$dPath);
 
-            // //     //Generate image thumbnail
-            // //     // $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
-            // //     // $img = Image::make($sPath);
-            // //     // $img->resize(450, 600);
-            // //     // $img->save($dPath);
+            //     //Generate image thumbnail
+                $dPath = public_path().'/uploads/volunteers/thumb/'.$newImageName;
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($sPath);
+                $image->cover(250,300);
+                $image->save($dPath);
 
-            //     $campaigns->image = $newImageName;
-            //     $campaigns->save();
-            //     File::delete(public_path().'uploads/campaigns/'.$oldImage);
-            // }
+                $volunteer->image = $newImageName;
+                $volunteer->save();
+                File::delete(public_path().'uploads/volunteers/'.$oldImage);
+                File::delete(public_path().'uploads/volunteers/thumb/'.$oldImage);
+            }
   
             $request->session()->flash('success','volunteer updated successfully');
 

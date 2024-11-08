@@ -16,6 +16,58 @@
         </div>
     </div>
     
+
+
+    <div class="our-cases-area section-padding30">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-7 col-md-10 col-sm-10">
+                   
+                    <div class="section-tittle text-center mb-80">
+                        <span>What we are doing</span>
+                        <h2>Our runnning  events for charity donations</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            @if (getCampaigns()->isNotEmpty())
+                    @foreach (getCampaigns() as $campaign)
+                        <div class="col-lg-3 col-md-4 col-sm-4">
+                            <a href="{{route('donate',$campaign->id)}}">
+                            <div class="single-cases mb-40">
+                                <div class="cases-img">
+                                @if ($campaign->image !="")
+                                    <a href="{{route('donate',$campaign->id)}}"><img src="{{asset('uploads/campaigns/thumb/'.$campaign->image)}}" alt=""></a>
+                                    @else
+                                @endif
+                                </div>
+                                <div class="cases-caption">
+                                    <h3><a href="{{route('donate',$campaign->id)}}">{{$campaign->name}}</a></h3>
+                                    <div class="single-skill mb-15">
+                                        <div class="bar-progress">
+                                            <div id="bar3" class="barfiller">
+                                                <div class="tipWrap">
+                                                    <span class="tip"></span>
+                                                </div>
+                                                <span class="fill" data-percentage="50"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                           
+                                    <div class="prices d-flex justify-content-between">
+                                        <p>Raised:<span> 5,000 </span></p>
+                                        <p>Goal:<span> {{$campaign->amount}}</span></p>
+                                    </div>
+                                    
+                                </div>
+                            </div></a>
+                        </div>
+                    @endforeach
+                @endif
+                
+            </div>
+        </div>
+    </div>
     <div class="count-down-area pt-25 section-bg" data-background="assets/img/gallery/section_bg02.png">
         <div class="container">
             <div class="row justify-content-center">
@@ -60,130 +112,6 @@
             </div>
         </div>
     </div>
-  
-    <section class="featured-job-area section-padding30 section-bg2" data-background="assets/img/gallery/section_bg03.png">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-7 col-lg-9 col-md-10 col-sm-12">
-                  
-                    <div class="section-tittle text-center mb-80">
-                        <span>What we are boing</span>
-                        <h2>We arrange many social events for charity donations</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-9 col-md-12">
-                  
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="#"><img src="assets/img/gallery/socialEvents1.png" alt=""></a>
-                            </div>
-                            <div class="job-tittle">
-                                <a href="#"><h4>Donation is Hope</h4></a>
-                                <ul>
-                                    <li><i class="far fa-clock"></i>8:30 - 9:30am</li>
-                                    <li><i class="fas fa-sort-amount-down"></i>18.01.2021</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-9 col-md-12">
-                   
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="#"><img src="assets/img/gallery/socialEvents2.png" alt=""></a>
-                            </div>
-                            <div class="job-tittle">
-                                <a href="#"><h4>A hand for Old People</h4></a>
-                                <ul>
-                                    <li><i class="far fa-clock"></i>8:30 - 9:30am</li>
-                                    <li><i class="fas fa-sort-amount-down"></i>18.01.2021</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-9 col-md-12">
-                   
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="#"><img src="assets/img/gallery/socialEvents3.png" alt=""></a>
-                            </div>
-                            <div class="job-tittle">
-                                <a href="#"><h4>Help for Children</h4></a>
-                                <ul>
-                                    <li><i class="far fa-clock"></i>8:30 - 9:30am</li>
-                                    <li><i class="fas fa-sort-amount-down"></i>18.01.2021</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-9 col-md-12">
-                   
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="#"><img src="assets/img/gallery/socialEvents1.png" alt=""></a>
-                            </div>
-                            <div class="job-tittle">
-                                <a href="#"><h4>Donation is Hope</h4></a>
-                                <ul>
-                                    <li><i class="far fa-clock"></i>8:30 - 9:30am</li>
-                                    <li><i class="fas fa-sort-amount-down"></i>18.01.2021</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-9 col-md-12">
-                    <!-- single-job-content -->
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="#"><img src="assets/img/gallery/socialEvents2.png" alt=""></a>
-                            </div>
-                            <div class="job-tittle">
-                                <a href="#"><h4>A hand for Children</h4></a>
-                                <ul>
-                                    <li><i class="far fa-clock"></i>8:30 - 9:30am</li>
-                                    <li><i class="fas fa-sort-amount-down"></i>18.01.2021</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-9 col-md-12">
-                    <!-- single-job-content -->
-                    <div class="single-job-items mb-30">
-                        <div class="job-items">
-                            <div class="company-img">
-                                <a href="#"><img src="assets/img/gallery/socialEvents3.png" alt=""></a>
-                            </div>
-                            <div class="job-tittle">
-                                <a href="#"><h4>Help for Children</h4></a>
-                                <ul>
-                                    <li><i class="far fa-clock"></i>8:30 - 9:30am</li>
-                                    <li><i class="fas fa-sort-amount-down"></i>18.01.2021</li>
-                                    <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- Featured_job_end -->
 
  @endsection

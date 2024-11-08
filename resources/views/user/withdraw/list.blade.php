@@ -20,8 +20,8 @@
 					<div class="container-fluid">
                         @include('account.message')
 						<div class="card">
-						@foreach ($campaigns as $campaign)
-							<form action="{{ route('withdraw.store') }}" method="post" id="withdrawform-{{ $campaign->id }}" name="withdrawform">
+						
+							
 							@csrf
                                 <div class="card-header">
                                     <div class="card-title">
@@ -51,7 +51,8 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
+											<tr>@foreach ($campaigns as $campaign)
+												<form action="{{ route('withdraw.store') }}" method="post" id="withdrawform-{{ $campaigns->id }}" name="withdrawform"></form>
 												<th>{{ $campaign->name }}</th>
 												<th>{{ $campaign->last_updated ? $campaign->last_updated->format('Y-m-d H:i:s') : 'N/A' }}</th>
 												<th>${{ number_format($campaign->total_donated, 2) }}</th>
@@ -86,12 +87,12 @@
 													<button type="submit" onclick="submitWithdrawForm({{ $campaign->id }})" class="btn btn-primary">Request Withdrawl</button>
 												@endif
 												</th>
-											</tr>
+											</form>
+											@endforeach	
+							 				</tr>
 										</tbody>
 									</table>
-                            	</form>
-												
-							@endforeach										
+                            											
 							</div>
 							<div class="card-footer clearfix">
                                 

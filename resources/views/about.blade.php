@@ -29,41 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-cat text-center mb-50">
-                        <div class="cat-icon">
-                            <span class="flaticon-null-1"></span>
-                        </div>
-                        <div class="cat-cap">
-                            <h5><a href="services.html">Clean Water</a></h5>
-                            <p>The sea freight service has grown conside rably in recent years. We spend timetting to know your processes to.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-cat active text-center mb-50">
-                        <div class="cat-icon">
-                            <span class="flaticon-think"></span>
-                        </div>
-                        <div class="cat-cap">
-                            <h5><a href="services.html">Clean Water</a></h5>
-                            <p>The sea freight service has grown conside rably in recent years. We spend timetting to know your processes to.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-cat text-center mb-50">
-                        <div class="cat-icon">
-                            <span class="flaticon-gear"></span>
-                        </div>
-                        <div class="cat-cap">
-                            <h5><a href="services.html">Clean Water</a></h5>
-                            <p>The sea freight service has grown conside rably in recent years. We spend timetting to know your processes to.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
     <!-- Services Area End -->
@@ -78,8 +44,7 @@
                             <span>About our foundetion</span>
                             <h2>We Are In A Mission To  Help Helpless</h2>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,mod tempor incididunt ut labore et dolore magna aliqua. Utnixm, quis nostrud exercitation ullamc.</p>
-                        <p>Lorem ipvsum dolor sit amext, consectetur adipisicing elit, smod tempor incididunt ut labore et dolore.</p>
+                       
                     </div>
                     <a href="about.html" class="btn">About US</a>
                 </div>
@@ -97,6 +62,7 @@
             </div>
         </div>
     </section>
+    
     <!-- About Law End-->
     <!-- Want To work -->
     <section class="wantToWork-area ">
@@ -117,16 +83,32 @@
     </section>
     <!-- Want To work End -->
     <!--? Testimonial Start -->
-    <div class="testimonial-area testimonial-padding">
+    <!-- <div class="testimonial-area testimonial-padding">
         <div class="container">
-            <!-- Testimonial contents -->
+             Testimonial contents 
             <div class="row d-flex justify-content-center">
                 <div class="col-xl-8 col-lg-8 col-md-10">
                     <div class="h1-testimonial-active dot-style">
-                        <!-- Single Testimonial -->
+                        
                         <div class="single-testimonial text-center">
                             <div class="testimonial-caption ">
-                                <!-- founder -->
+                              
+                                <div class="testimonial-founder">
+                                    <div class="founder-img mb-40">
+                                        <img src="assets/img/gallery/testimonial.png" alt="">
+                                        <span>Margaret Lawson</span>
+                                        <p>Creative Director</p>
+                                    </div>
+                                </div>
+                                <div class="testimonial-top-cap">
+                                    <p>“I am at an age where I just want to be fit and healthy our bodies are our responsibility! So start caring for your body and it will care for you. Eat clean it will care for you and workout hard.”</p>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- Single Testimonial 
+                        <div class="single-testimonial text-center">
+                            <div class="testimonial-caption ">
+                                 founder 
                                 <div class="testimonial-founder">
                                     <div class="founder-img mb-40">
                                         <img src="assets/img/gallery/testimonial.png" alt="">
@@ -139,10 +121,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Single Testimonial -->
-                        <div class="single-testimonial text-center">
+                         Single Testimonial 
+                         <div class="single-testimonial text-center">
                             <div class="testimonial-caption ">
-                                <!-- founder -->
+                                 founder 
                                 <div class="testimonial-founder">
                                     <div class="founder-img mb-40">
                                         <img src="assets/img/gallery/testimonial.png" alt="">
@@ -154,23 +136,7 @@
                                     <p>“I am at an age where I just want to be fit and healthy our bodies are our responsibility! So start caring for your body and it will care for you. Eat clean it will care for you and workout hard.”</p>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Single Testimonial -->
-                        <div class="single-testimonial text-center">
-                            <div class="testimonial-caption ">
-                                <!-- founder -->
-                                <div class="testimonial-founder">
-                                    <div class="founder-img mb-40">
-                                        <img src="assets/img/gallery/testimonial.png" alt="">
-                                        <span>Margaret Lawson</span>
-                                        <p>Creative Director</p>
-                                    </div>
-                                </div>
-                                <div class="testimonial-top-cap">
-                                    <p>“I am at an age where I just want to be fit and healthy our bodies are our responsibility! So start caring for your body and it will care for you. Eat clean it will care for you and workout hard.”</p>
-                                </div>
-                            </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

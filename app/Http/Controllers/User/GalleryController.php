@@ -64,10 +64,11 @@ class GalleryController extends Controller
                 File::copy($sPath,$dPath);
 
             //     //Generate image thumbnail
-            //     // $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
-            //     // $img = Image::make($sPath);
-            //     // $img->resize(450, 600);
-            //     // $img->save($dPath);
+                $dPath = public_path().'/uploads/volunteers/thumb/'.$newImageName;
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($sPath);
+                $image->cover(450,600);
+                $image->save($dPath);
 
                 $galleries->name = $newImageName;
                 $galleries->save();
@@ -143,15 +144,17 @@ class GalleryController extends Controller
                 File::copy($sPath,$dPath);
 
             //     //Generate image thumbnail
-            //     // $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
-            //     // $img = Image::make($sPath);
-            //     // $img->resize(450, 600);
-            //     // $img->save($dPath);
+                $dPath = public_path().'/uploads/volunteers/thumb/thumb'.$newImageName;
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($sPath);
+                $image->cover(450,600);
+                $image->save($dPath);
 
                 $galleries->image = $newImageName;
                 $galleries->save();
 
                 File::delete(public_path().'uploads/campaigns/'.$oldImage);
+                File::delete(public_path().'uploads/campaigns/thumb'.$oldImage);
             }
 
 

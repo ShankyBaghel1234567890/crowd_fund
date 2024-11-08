@@ -1,31 +1,53 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Crowd Funding</title>
+		<!-- Google Font: Source Sans Pro -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="{{asset('login-assets/plugins/fontawesome-free/css/all.min.css')}}">
+		<!-- Theme style -->
+		<link rel="stylesheet" href="{{asset('login-assets/css/adminlte.min.css')}}">
 
-@section('content')
+		<link rel="stylesheet" href="{{asset('login-assets/plugins/dropzone/min/dropzone.min.css')}}">
+		
 
+		<link rel="stylesheet" href="{{asset('login-assets/css/custom.css')}}">
+		<meta name="csrf-token" content="{{csrf_token()}}">
+	</head>
+    <body class="hold-transition sidebar-mini">
+    <main>
     <div class="container mt-5">
         <h2 class="text-center">Volunteer Registration Form</h2>
                 <div class="container-fluid">
+                    @if (Session::has('success'))
+                        <div class="alert alert-success">
+                            {{Session::get('success')}}
+                        </div>
+                    @endif
                         <form action="" method="post" id="volunteerform" name="volunteerform">
                             @csrf
                             <div class="card">
                                 <div class="card-body">								
                                     <div class="row">
                                        
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="name"> Name</label>
                                                 <input type="text"  name="name" id="name" class="form-control" placeholder=" Name" >
                                                 <p></p>	
                                             </div>
                                         </div>	
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="email">Email</label>
                                                 <input type="text"  name="email" id="email" class="form-control" placeholder="email" >
                                                 <p></p>	
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="id_type">ID Type</label>
                                                 <select class="form-control" id="id_type" name="id_type" >
@@ -38,70 +60,70 @@
                                             </div>
                                         </div>
                                         	
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="uid">UID</label>
                                                 <input type="text"  name="uid" id="uid" class="form-control" placeholder="uid" >
                                                 <p></p>	
                                             </div>
                                         </div>	
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="phone">Phone</label>
                                                 <input type="text"  name="phone" id="phone" class="form-control" placeholder="Campaign Name" >
                                                 <p></p>	
                                             </div>
                                         </div>	
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="occupation">Occupation</label>
                                                 <input type="text"  name="occupation" id="occupation" class="form-control" placeholder="occupation" >
                                                 <p></p>	
                                             </div>
                                         </div>	
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="address">Address</label>
                                                 <input type="text"  name="address" id="address" class="form-control" placeholder="address" >
                                                 <p></p>	
                                             </div>
                                         </div>	
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="city">City</label>
                                                 <input type="text"  name="city" id="city" class="form-control" placeholder="city" >
                                                 <p></p>	
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="state">State</label>
                                                 <input type="text"  name="state" id="state" class="form-control" placeholder="ex. 20,000.00" >
                                                 <p></p>	
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="country">Country</label>
                                                 <input type="text"  name="country" id="country" class="form-control" >
                                                 <p></p>	
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="zip_code">Zip Code</label>
                                                 <input type="text"  name="zip_code" id="zip_code" class="form-control" >
                                                 <p></p>	
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="mother">Mother Name</label>
                                                 <input type="text"  name="mother" id="mother" class="form-control" >
                                                 <p></p>	
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="mb-3">
                                                 <label for="father">Father Name</label>
                                                 <input type="text"  name="father" id="father" class="form-control" >
@@ -110,27 +132,46 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
+                                                <input type="hidden" id="image_id" name="image_id" value="">
                                                 <label for="image">Image</label>
                                                 <div id="image" class="dropzone dz-clickable">
                                                     <div class="dz-message needsclick">
                                                         <br>Drop files here or click to upload.<br><br>
                                                     </div>
-                                                </div>
-                                                	
+                                                </div>	
                                             </div>
                                         </div>
                                        									
                                     </div>
                                 </div>							
                             </div>
-                            <button type="submit" class="btn  btn-block">Submit</button>
+                            <button type="submit" class="btn  btn-primary">Submit</button>
                         </form>
                     </div>
         </div>
+        </main>
+        <footer class="main-footer">
+				
+				<strong>Copyright &copy; Crowd Funding All rights reserved.
+		</footer>
+        <script src="{{asset('login-assets/plugins/jquery/jquery.min.js')}}"></script>
+		<!-- Bootstrap 4 -->
+		<script src="{{asset('login-assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+		<!-- AdminLTE App -->
+		<script src="{{asset('login-assets/js/adminlte.min.js')}}"></script>
+		<script src="{{asset('login-assets/js/demo.js')}}"></script>
 
- @endsection
+		<script src="{{asset('login-assets/plugins/dropzone/min/dropzone.min.js')}}"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script src="{{asset('login-assets/js/demo.js')}}"></script>
+        <script type="text/javascript">
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+		</script>
 
- @section('customjs')
  
  <script>
  $("#volunteerform").submit(function(event){
@@ -145,9 +186,9 @@
             success:function(response){
                 $("button[type=submit]").prop('disable',false);
 
-                if(response['status'] == true){
+                if(response.status == true){
 
-                    window.location.href="{{route('home')}}";
+                    window.location.href="{{route('home.volunteer')}}";
 
                     
 
@@ -207,6 +248,8 @@
                     
                 }
                 else{
+
+                    var errors =response['errors']
 
                 if(errors['name']){
                     $("#name").addClass('is-invalid')
@@ -346,5 +389,33 @@
             }
         })
     });
+
+    Dropzone.autoDiscover = false;    
+    const dropzone = $("#image").dropzone({ 
+        init: function() {
+            this.on('addedfile', function(file) {
+                if (this.files.length > 1) {
+                    this.removeFile(this.files[0]);
+                }
+            });
+        },
+        url:  "{{route('temp-images.create')}}",
+        maxFiles: 1,
+        paramName: 'image',
+        addRemoveLinks: true,
+        acceptedFiles: "image/jpeg,image/png,image/gif",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }, success: function(file, response){
+            $("#image_id").val(response.image_id);
+            //console.log(response)
+        }
+    });
 </script>
- @endsection
+
+    </body>
+   
+
+
+
+ 

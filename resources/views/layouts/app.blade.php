@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/animated-headline.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/volunteer.css')}}">
 </head>
 <body>
     
@@ -62,6 +63,11 @@
                                             <li><a  href="https://www.facebook.com/profile.php?id=100081532707547"><i class="fab fa-facebook-f"></i></a></li>
                                             <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                             <li> <a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                                                    <i class="fas fa-expand-arrows-alt"></i>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -71,7 +77,6 @@
                                             <div class="select-itms">
                                                 <select name="select" id="select1">
                                                     <option value="">English</option>
-                                                    <option value="">Hindi</option>
                                                 </select>
                                             </div>
                                         </form>
@@ -197,6 +202,6 @@
     <script src="{{asset('./assets/js/jquery.paroller.min.js')}}"></script>
     <script src="{{asset('./assets/js/one-page-nav-min.js')}}"></script>
     <script src="{{asset('./assets/js/price-range.js')}}"></script>
-    
+    <script src="{{asset('./assets/js/bootstrap.bundle.min.js')}}"></script>
     </body>
 </html>

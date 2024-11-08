@@ -47,7 +47,19 @@
                                                     <option {{($category->status == 0)  ? 'selected' :  ''}} value="0">Block</option>
                                                 </select>	
                                             </div>
-                                        </div>									
+                                        </div>	
+                                        
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <input type="hidden" id="image_id" name="image_id" value="">
+                                                <label for="image">Banner</label>
+                                                <div id="image" class="dropzone dz-clickable">
+                                                    <div class="dz-message needsclick">
+                                                        <br>Drop files here or click to upload.<br><br>
+                                                    </div>
+                                                </div>	
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>							
                             </div>
@@ -121,7 +133,27 @@
         })
     });
 
-    
+    Dropzone.autoDiscover = false;    
+    const dropzone = $("#image").dropzone({ 
+        init: function() {
+            this.on('addedfile', function(file) {
+                if (this.files.length > 1) {
+                    this.removeFile(this.files[0]);
+                }
+            });
+        },
+        url:  "{{route('temp-images.create')}}",
+        maxFiles: 1,
+        paramName: 'image',
+        addRemoveLinks: true,
+        acceptedFiles: "image/jpeg,image/png,image/gif",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }, success: function(file, response){
+            $("#image_id").val(response.image_id);
+            //console.log(response)
+        }
+    });
     
     
  </script>

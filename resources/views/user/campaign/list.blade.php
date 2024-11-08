@@ -10,7 +10,7 @@
 								<h1>Campaigns</h1>
 							</div>
 							<div class="col-sm-6 text-right">
-								<a href="{{route('campaign.create')}}" class="btn btn-primary">New Category</a>
+								<a href="{{route('campaign.create')}}" class="btn btn-primary">New Campaign</a>
 							</div>
 						</div>
 					</div>

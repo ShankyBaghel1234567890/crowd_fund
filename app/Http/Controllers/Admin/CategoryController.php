@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\TempImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class CategoryController extends Controller
 {
@@ -40,6 +43,28 @@ class CategoryController extends Controller
             $category->description = $request->description;
             $category->status = $request->status;
             $category->save();
+
+             //save image here
+             if(!empty($request->image_id)){
+                $tempImage = TempImage::find($request->image_id);
+                $extArray = explode('.',$tempImage->name);
+                $ext = last($extArray);
+
+                $newImageName = $category->id.'.'.$ext;
+                $sPath = public_path().'/temp/'.$tempImage->name;
+                $dPath = public_path().'/uploads/categories/'.$newImageName;
+                File::copy($sPath,$dPath);
+
+                //Generate image thumbnail
+                $dPath = public_path().'/uploads/categories/thumb/'.$newImageName;
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($sPath);
+                $image->cover(300,275);
+                $image->save($dPath);
+
+                $category->image = $newImageName;
+                $category->save();
+            }
 
             $request->session()->flash('success','Category added successfully');
 
@@ -92,6 +117,33 @@ class CategoryController extends Controller
             $category->description = $request->description;
             $category->status = $request->status;
             $category->save();
+
+            $oldImage = $category->image;
+
+            //save image here
+            if(!empty($request->image_id)){
+                $tempImage = TempImage::find($request->image_id);
+                $extArray = explode('.',$tempImage->name);
+                $ext = last($extArray);
+
+                $newImageName = $category->id.'.'.$ext;
+                $sPath = public_path().'/temp/'.$tempImage->name;
+                $dPath = public_path().'/uploads/categories/'.$newImageName;
+                File::copy($sPath,$dPath);
+
+            //     //Generate image thumbnail
+                $dPath = public_path().'/uploads/categories/thumb/'.$newImageName;
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($sPath);
+                $image->cover(300,275);
+                $image->save($dPath);
+
+                $category->image = $newImageName;
+                $category->save();
+
+                File::delete(public_path().'uploads/categories/'.$oldImage);
+                File::delete(public_path().'uploads/categories/thumb/'.$oldImage);
+            }
   
             $request->session()->flash('success','Category updated successfully');
 
