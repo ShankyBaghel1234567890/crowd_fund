@@ -26,7 +26,7 @@
 			
 							<div class="info-box-content">
 							<span class="info-box-text">Total Campaign</span>
-							<span class="info-box-number">10</span>
+							<span class="info-box-number">{{$campaign}}</span>
 							</div>
 							<!-- /.info-box-content -->
 						</div>
@@ -38,7 +38,7 @@
 			
 							<div class="info-box-content">
 							<span class="info-box-text">Total Donations</span>
-							<span class="info-box-number">10</span>
+							<span class="info-box-number">{{$donation}}</span>
 							</div>
 							<!-- /.info-box-content -->
 						</div>

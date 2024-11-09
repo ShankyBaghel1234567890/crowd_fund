@@ -21,7 +21,7 @@
                 </div>
         
                 <div class="carousel-item">
-                    <img src="assets/img/childd.jpg" class="d-block w-100" alt="...">
+                    <img src="assets/img/startup2.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Welcome to Crowd Funded Organisation</h5>
                         <p>Effortlessly Have Your Own World Class Professional Fund Raising Platform</p>

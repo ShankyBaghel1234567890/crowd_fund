@@ -32,7 +32,8 @@ class GalleryController extends Controller
 
     public function create(){
         
-        $campaigns = Campaign::orderBy('name','ASC')->get();
+        $user = Auth::user();
+        $campaigns = Campaign::where('user_id',$user->id)->orderBy('name','ASC')->get();
         $data['campaigns'] =   $campaigns;
         return view('user.gallery.create',$data);
     }
@@ -64,7 +65,7 @@ class GalleryController extends Controller
                 File::copy($sPath,$dPath);
 
             //     //Generate image thumbnail
-                $dPath = public_path().'/uploads/volunteers/thumb/'.$newImageName;
+                $dPath = public_path().'/uploads/gallery/thumb/'.$newImageName;
                 $manager = new ImageManager(new Driver());
                 $image = $manager->read($sPath);
                 $image->cover(450,600);
@@ -97,8 +98,8 @@ class GalleryController extends Controller
             $request->session()->flash('error','Record not found');
             return redirect()->route('galleries.index');
         }
-
-        $campaigns = Campaign::orderBy('name','ASC')->get();
+        $user = Auth::user();
+        $campaigns = Campaign::where('user_id',$user->id)->orderBy('name','ASC')->get();
         $data['campaigns'] = $campaigns;
         $data['gallery'] = $gallery;
         return view('user.gallery.edit',$data);
@@ -140,11 +141,11 @@ class GalleryController extends Controller
 
                 $newImageName = $galleries->id.'.'.$ext;
                 $sPath = public_path().'/temp/'.$tempImage->name;
-                $dPath = public_path().'/uploads/campaigns/'.$newImageName;
+                $dPath = public_path().'/uploads/gallery/'.$newImageName;
                 File::copy($sPath,$dPath);
 
             //     //Generate image thumbnail
-                $dPath = public_path().'/uploads/volunteers/thumb/thumb'.$newImageName;
+                $dPath = public_path().'/uploads/gallery/thumb/'.$newImageName;
                 $manager = new ImageManager(new Driver());
                 $image = $manager->read($sPath);
                 $image->cover(450,600);
@@ -153,8 +154,8 @@ class GalleryController extends Controller
                 $galleries->image = $newImageName;
                 $galleries->save();
 
-                File::delete(public_path().'uploads/campaigns/'.$oldImage);
-                File::delete(public_path().'uploads/campaigns/thumb'.$oldImage);
+                File::delete(public_path().'uploads/gallery/'.$oldImage);
+                File::delete(public_path().'uploads/gallery/thumb'.$oldImage);
             }
 
 
@@ -184,11 +185,13 @@ class GalleryController extends Controller
             ]);
             
         }
-
-
-        $gallery->delete();
+        $newImageName = $gallery->image;
+        File::delete(public_path().'uploads/gallery/'.$newImageName);
+        File::delete(public_path().'uploads/gallery/thumb'.$newImageName);
 
         $request->session()->flash('success','Image  deleted successfully');
+        $gallery->delete();
+        
 
         return response()->json([
             'status' => true,

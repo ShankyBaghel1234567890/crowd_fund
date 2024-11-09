@@ -94,7 +94,7 @@ $("#galleryform").submit(function(event){
 
                 if(response['status'] == true){
 
-                    window.location.href="{{route('galleries.index')}}";
+                    window.location.href="{{route('usergalleries.index')}}";
 
                     
 
