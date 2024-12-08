@@ -10,15 +10,84 @@
 		<link rel="stylesheet" href="{{asset('login-assets/plugins/fontawesome-free/css/all.min.css')}}">
 		<!-- Theme style -->
 		<link rel="stylesheet" href="{{asset('login-assets/css/adminlte.min.css')}}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/favicon.ico')}}">
 
 		<link rel="stylesheet" href="{{asset('login-assets/plugins/dropzone/min/dropzone.min.css')}}">
 		
 
 		<link rel="stylesheet" href="{{asset('login-assets/css/custom.css')}}">
 		<meta name="csrf-token" content="{{csrf_token()}}">
+        <style>
+        
+        .btn{
+            align-items: center;
+            background: #09cc7f;
+            font-family: "Muli", sans-serif;
+            text-transform: capitalize;
+            padding: 27px 44px;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 2px;
+            line-height: 1;
+            -moz-user-select: none;
+            letter-spacing: 1px;
+            line-height: 0;
+            margin-bottom: 20px;
+            margin: 10px;
+            cursor: pointer;
+            transition: color 0.4s linear;
+            position: relative;
+            z-index: 1;
+            border: 0;
+            overflow: hidden;
+            margin-left: 485px;
+        }
+        .btn::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 101%;
+            height: 101%;
+            background: #24ac75;
+            z-index: 1;
+            border-radius: 5px;
+            transition: transform 0.5s;
+            transition-timing-function: ease;
+            transform-origin: 0 0;
+            transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+            transform: scaleX(0);
+            border-radius: 0px;
+        }
+        .btn:hover::before {
+            transform: scaleX(1);
+            color: #fff !important;
+            z-index: -1;
+        }
+        .btn:hover {
+            background-position: right;
+        }
+    </style>
 	</head>
     <body class="hold-transition sidebar-mini">
     <main>
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{{asset('assets/img/logo/loder.png')}}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" d-flex align-items-center justify-content-center">
+    <img src="{{asset('assets/img/logo/loder.png')}}" alt="">
+    </div>
+    
     <div class="container mt-5">
         <h2 class="text-center">Volunteer Registration Form</h2>
                 <div class="container-fluid">
@@ -145,7 +214,7 @@
                                     </div>
                                 </div>							
                             </div>
-                            <button type="submit" class="btn  btn-primary">Submit</button>
+                            <button type="submit" class="btn ">Submit</button>
                         </form>
                     </div>
         </div>

@@ -29,9 +29,9 @@ class Withdraw extends Model
     {
         return $this->hasMany(Donation::class);
     }
-    public function campaigns()
-    {
-        return $this->hasMany(Campaign::class);
-    }
+    // public function campaigns()
+    // {
+    //     return $this->hasMany(Campaign::class);
+    // }
 
 }

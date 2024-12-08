@@ -52,20 +52,13 @@ Route::controller(HomeController::class)->group(function(){
 
 
 Route::group(['middleware' => 'guest'],function(){
-
-
     Route::get('/register',[LoginController::class,'create'])->name('auth.register');
     Route::post('/authentication',[LoginController::class,'register'])->name('register.store');
-    
-
 });
 
 Route::group(['middleware' => 'guest'],function(){
-
     Route::get('/login',[LoginController::class,'index'])->name('login');
     Route::post('/authenticate',[LoginController::class,'authenticate'])->name('auth.authenticate');
-
-
 });
 
 //temp-images route
@@ -74,11 +67,8 @@ Route::post('/upload-temp-images',[TempImagesController::class,'create'])->name(
 Route::group(['prefix' => 'admin'],function(){
 
     Route::group(['middleware' => 'admin.guest'],function(){
-
         Route::get('/login',[AdminLoginController::class,'index'])->name('admin.login');
         Route::post('/authenticate',[AdminLoginController::class,'authenticate'])->name('admin.authenticate');
-    
-    
     });
    
     Route::group(['middleware' => 'admin.auth'],function(){
@@ -101,8 +91,8 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('/campaigns/{campaign}/edit',[CampaignController::class,'edit'])->name('campaigns.edit');
         Route::put('/campaigns/{campaign}',[CampaignController::class,'update'])->name('campaigns.update');
         Route::delete('/campaigns/{campaign}',[CampaignController::class,'destroy'])->name('campaigns.delete');
+        Route::post('/campaigns/{id}/approve', [CampaignController::class, 'approve'])->name('campaigns.approve');
 
-        
 
         //Gallery Route
         Route::get('/galleries',[GalleryController::class,'index'])->name('galleries.index');
@@ -112,7 +102,7 @@ Route::group(['prefix' => 'admin'],function(){
         Route::put('/galleries/{gallery}',[GalleryController::class,'update'])->name('galleries.update');
         Route::delete('/galleries/{gallery}',[GalleryController::class,'destroy'])->name('galleries.delete');
 
-        //Users route
+        //Donation route
         Route::get('/donation',[AdminDonationController::class,'index'])->name('admin.donation');
         Route::delete('/donation/{donation}',[GalleryController::class,'destroy'])->name('donation.delete');
 
@@ -122,7 +112,7 @@ Route::group(['prefix' => 'admin'],function(){
         Route::put('/volunteers/{volunteer}',[VolunteerController::class,'update'])->name('volunteers.update');
         Route::delete('/volunteers/{volunteer}',[VolunteerController::class,'destroy'])->name('volunteers.delete');
 
-        //Users route
+        //Withdraw route
         Route::get('/withdrawlogs',[WithdrawLogsController::class,'index'])->name('admin.withdrawlogs');
         Route::post('/withdrawlogs/{id}/approve', [WithdrawLogsController::class, 'approve'])->name('admin.withdrawlogs.approve');
         Route::post('/withdrawlogs/{id}/reject', [WithdrawLogsController::class, 'reject'])->name('admin.withdrawlogs.reject');
@@ -144,8 +134,6 @@ Route::group(['prefix' => 'admin'],function(){
 
 Route::group(['prefix' => 'user'],function(){
    
-
-
     Route::group(['middleware' => 'web'],function(){
 
         Route::get('/dashboard',[UserDashboardController::class,'index'])->name('user.dashboard');
@@ -181,7 +169,6 @@ Route::group(['prefix' => 'user'],function(){
         Route::post('/withdraw',[WithdrawController::class,'store'])->name('withdraw.store');
         
     });
-
 });
 
 Route::get('/phonepe/payment',[PaymentController::class,'makePhonePePayment'])->name('phonepe.payment');

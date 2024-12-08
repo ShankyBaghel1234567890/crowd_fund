@@ -63,11 +63,6 @@
                                             <li><a  href="https://www.facebook.com/profile.php?id=100081532707547"><i class="fab fa-facebook-f"></i></a></li>
                                             <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                             <li> <a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                                                    <i class="fas fa-expand-arrows-alt"></i>
-                                                </a>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -116,12 +111,7 @@
                                                         
                                                     </ul>
                                                 </li>
-                                                <!-- <li><a href="/blog">Blog</a>
-                                                    <ul class="submenu">
-                                                        <li><a href="/blogs">Blog</a></li>
-                                                        <li><a href="/blog_details">Blog Details</a></li>
-                                                        <li><a href="/elements">Element</a></li>
-                                                    </ul> -->
+                                                
                                                 </li>
                                                 <li><a href="/contact">Contact</a></li>
                                             </ul>

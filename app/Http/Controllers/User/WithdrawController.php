@@ -14,11 +14,9 @@ class WithdrawController extends Controller
 {
     public function index(Request $request){
         $user = Auth::user();
-        $campaigns = Campaign::whereHas('donations', function ($query) use ($user) {
-            $query->where('user_id', $user->id);
-        })->with(['donations' => function ($query) use ($user) {
-            $query->where('user_id', $user->id);
-        }])->get();
+        $campaigns = Campaign::where('user_id', $user->id)
+        ->with(['donations'])
+        ->get();
 
         // if(!empty($request->get('keyword'))){
         //     $campaigns = $campaigns->where('name','like','%'.$request->get('keyword').'%');
@@ -33,7 +31,7 @@ class WithdrawController extends Controller
         $data['campaigns'] = $campaigns;
         $data['withdraws'] = $withdraws;
         
-        return view ('user.withdraw.list', $data);
+        return view ('user.withdraw.request', $data);
     }
 
 
@@ -47,7 +45,6 @@ class WithdrawController extends Controller
     
         // Retrieve total donation amount for the selected campaign
         $totalAmount = Donation::where('campaign_id', $campaignId)
-                                ->where('user_id', $user->id)
                                 ->sum('amount');
     
         if ($totalAmount <= 0) {

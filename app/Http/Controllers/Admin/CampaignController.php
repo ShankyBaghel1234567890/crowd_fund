@@ -205,5 +205,14 @@ class CampaignController extends Controller
         ]);
     }
 
+    public function approve($id){
+
+        $campaign = Campaign::findOrFail($id);
+        $campaign->status = 1;
+        $campaign->save();
+
+        return redirect()->route('campaigns.index')->with('success', 'Campaign approved.');
+    }
+
 }
 

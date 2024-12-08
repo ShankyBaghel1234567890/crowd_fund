@@ -32,6 +32,57 @@
             max-width: 500px;
             margin-left: 5% ;
         }
+        .btn{
+            align-items: center;
+            background: #09cc7f;
+            font-family: "Muli", sans-serif;
+            text-transform: capitalize;
+            padding: 27px 44px;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 2px;
+            line-height: 1;
+            -moz-user-select: none;
+            letter-spacing: 1px;
+            line-height: 0;
+            margin-bottom: 0;
+            margin: 10px;
+            cursor: pointer;
+            transition: color 0.4s linear;
+            position: relative;
+            z-index: 1;
+            border: 0;
+            overflow: hidden;
+            margin-left: 185px;
+        }
+        .btn::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 101%;
+            height: 101%;
+            background: #24ac75;
+            z-index: 1;
+            border-radius: 5px;
+            transition: transform 0.5s;
+            transition-timing-function: ease;
+            transform-origin: 0 0;
+            transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+            transform: scaleX(0);
+            border-radius: 0px;
+        }
+        .btn:hover::before {
+            transform: scaleX(1);
+            color: #fff !important;
+            z-index: -1;
+        }
+        .btn:hover {
+            background-position: right;
+        }
     </style>
 </head>
 <body>
@@ -97,7 +148,7 @@
         <label  for="transaction_id">Transaction ID</label>
         <input type="text" class="form-control" id="transaction_id" name="transaction_id" placeholder="Transaction ID" required>
         </div>
-        <button type="submit" class="btn submit-btn">Donate Now</button>
+        <button type="submit" class="btn btn-green">Donate Now</button>
     </form>
     </div>
 
