@@ -55,7 +55,7 @@
 												
 												<th>{{ $campaign->name }}</th>
 												<th>{{ $campaign->last_updated ? $campaign->last_updated->format('Y-m-d H:i:s') : 'N/A' }}</th>
-												<th>${{ number_format($campaign->total_donated, 2) }}</th>
+												<th>{{ number_format($campaign->total_donated, 2) }}</th>
 												<th>
 													@php
 														// Check if there's a pending withdrawal for this campaign

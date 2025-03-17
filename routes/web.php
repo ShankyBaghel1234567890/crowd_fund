@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Admin\VolunteerController;
 use App\Http\Controllers\Admin\WithdrawLogsController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\OtpController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\User\CampaignController as UserCampaignController;
@@ -21,6 +22,9 @@ use App\Http\Controllers\User\GalleryController as UserGalleryController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\WithdrawController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +63,17 @@ Route::group(['middleware' => 'guest'],function(){
 Route::group(['middleware' => 'guest'],function(){
     Route::get('/login',[LoginController::class,'index'])->name('login');
     Route::post('/authenticate',[LoginController::class,'authenticate'])->name('auth.authenticate');
+    Route::post('/send-otp', [OtpController::class, 'sendOtp']);
+    Route::post('/verify-otp', [OtpController::class, 'verifyOtp']);
+    Route::post('/check-password', function(Request $request) {
+        $user = User::where('email', $request->email)->first();
+    
+        if ($user && Hash::check($request->password, $user->password)) {
+            return response()->json(['valid' => true]);
+        } else {
+            return response()->json(['valid' => false], 401);
+        }
+    });
 });
 
 //temp-images route
