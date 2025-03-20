@@ -36,6 +36,8 @@ return [
     | Supported: "session"
     |
     */
+    
+
 
     'guards' => [
         'web' => [
@@ -46,6 +48,10 @@ return [
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
+        ],
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
         ],
     ],
 

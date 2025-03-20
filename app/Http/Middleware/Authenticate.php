@@ -17,10 +17,10 @@ class Authenticate extends Middleware
 
     protected function authenticate($request, array $guards)
     {
-        if ($this->auth->guard('auth')->check()) {
-            return $this->auth->shouldUse('auth');
+        if ($this->auth->guard('web')->check()) {
+            return $this->auth->shouldUse('web');
         }
                                                                                         
-        $this->unauthenticated($request, ['auth']);
+        $this->unauthenticated($request, ['web']);
     }
 }

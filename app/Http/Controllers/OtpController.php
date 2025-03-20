@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Otp;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class OtpController extends Controller
 {
@@ -12,10 +14,22 @@ class OtpController extends Controller
         $otpCode = rand(100000, 999999);
 
         // Store OTP in database
-        Otp::updateOrCreate(
-            ['email' => $request->email],
-            ['otp' => $otpCode, 'created_at' => now()]
-        );
+        $validator = Validator::make($request->all(),[
+            'email' =>  'required|email',
+
+        ]);
+        if($validator->passes()){
+            
+            $otp = new Otp();
+            $otp->email = $request->email;
+            $otp->otp = $otpCode;
+            $otp->created_at = Carbon::now();
+            $otp->save();
+        }
+        // Otp::updateOrCreate(
+        //     ['email' => $request->email],
+        //     ['otp' => $otpCode, 'created_at' => now()]
+        // );
 
         // Send OTP email
         Mail::raw("Your OTP code is: $otpCode", function ($message) use ($request) {
@@ -31,8 +45,9 @@ class OtpController extends Controller
                          ->where('otp', $request->otp)
                          ->first();
 
-        if ($otpRecord && Carbon::parse($otpRecord->created_at)->addMinutes(5)->isFuture()) {
+        if ($otpRecord && Carbon::parse($otpRecord->created_at)->addMinutes(value: 10)->isFuture()) {
             $otpRecord->update(['is_verified' => true]);
+            
             return response()->json(['message' => 'OTP verified successfully']);
         }
 

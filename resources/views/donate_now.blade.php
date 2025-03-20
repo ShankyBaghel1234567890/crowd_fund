@@ -148,7 +148,7 @@
         <label  for="transaction_id">Transaction ID</label>
         <input type="text" class="form-control" id="transaction_id" name="transaction_id" placeholder="Transaction ID" required>
         </div>
-        <button type="submit" class="btn btn-green">Donate Now</button>
+        <button type="pay-button" class="btn btn-green">Donate Now</button>
     </form>
     </div>
 
@@ -159,6 +159,40 @@
 				}
 			});
 		</script>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+document.getElementById('pay-button').onclick = function(e) {
+    e.preventDefault();
+    let amount = document.getElementById('amount').value;
+
+    fetch("{{ route('payment.process') }}", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+        },
+        body: JSON.stringify({ amount: amount })
+    })
+    .then(response => response.json())
+    .then(data => {
+        let options = {
+            "key": data.key,
+            "amount": data.amount,
+            "currency": "INR",
+            "name": "Crowdfunding",
+            "description": "Donation",
+            "order_id": data.order_id,
+            "handler": function (response) {
+                window.location.href = "{{ route('payment.success') }}?razorpay_payment_id=" + response.razorpay_payment_id + "&campaign_id=" + {{ $campaign->id }};
+            }
+        };
+        let rzp1 = new Razorpay(options);
+        rzp1.open();
+    })
+    .catch(error => console.log(error));
+};
+</script>
 
 
 

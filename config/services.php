@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'razorpay' => [
+    'key' => env('rzp_test_t6IAkxVPJbUiTG'),
+    'secret' => env('hq3GZrvUwxZnaaNJoFvy4VB9'),
+],
+
 ];

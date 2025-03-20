@@ -7,6 +7,7 @@ export default defineConfig({
         outDir: 'public/build',
         
     },
+    
     plugins: [
         laravel({
             input: [
@@ -17,3 +18,4 @@ export default defineConfig({
         }),
     ],
 });
+

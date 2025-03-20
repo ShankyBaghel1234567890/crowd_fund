@@ -46,6 +46,54 @@
 						</div>
 						<!-- ./col -->
 					</div>
+					<div class="row">
+						<h3 class="mt-5">Your Donation Statistics</h3>
+						<canvas id="donationChart"></canvas>
+
+						<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+						<script>
+							document.addEventListener("DOMContentLoaded", function () {
+								var ctx = document.getElementById("donationChart").getContext("2d");
+
+								var donationChart = new Chart(ctx, {
+									type: 'bar',
+									data: {
+										labels: ["Today", "This Week", "This Month", "This Year"],
+										datasets: [{
+											label: 'Total Donations',
+											data: [
+												{{ $donationStats['daily'] }},
+												{{ $donationStats['weekly'] }},
+												{{ $donationStats['monthly'] }},
+												{{ $donationStats['yearly'] }}
+											],
+											backgroundColor: [
+												'rgba(75, 192, 192, 0.6)',
+												'rgba(54, 162, 235, 0.6)',
+												'rgba(255, 206, 86, 0.6)',
+												'rgba(255, 99, 132, 0.6)'
+											],
+											borderColor: [
+												'rgba(75, 192, 192, 1)',
+												'rgba(54, 162, 235, 1)',
+												'rgba(255, 206, 86, 1)',
+												'rgba(255, 99, 132, 1)'
+											],
+											borderWidth: 1
+										}]
+									},
+									options: {
+										responsive: true,
+										scales: {
+											y: {
+												beginAtZero: true
+											}
+										}
+									}
+								});
+							});
+						</script>
+					</div>
 
 					</div><!-- /.container-fluid -->
 				</section>

@@ -46,7 +46,7 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/blogs', 'blog');
     Route::get('/blog_details', 'blog_details');
     Route::get('/about', 'about');
-    Route::get('/donate_now/{campaign}', 'donate')->name('donate');
+    // Route::get('/donate_now/{campaign}', 'donate')->name('donate');
     Route::post('/donate_now', 'donation_store')->name('donation.store');
     Route::get('/volunteer', 'volunteers')->name('home.volunteer');
     Route::post('/volunteer', 'volunteer_store')->name('volunteer.store');
@@ -76,6 +76,12 @@ Route::group(['middleware' => 'guest'],function(){
     });
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/donate/{campaign}', [PaymentController::class, 'donate'])->name('donate');
+    Route::post('/payment', [PaymentController::class, 'processPayment'])->name('process.payment');
+    Route::get('/payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+    Route::get('/payment/fail', [PaymentController::class, 'paymentFail'])->name('payment.fail');
+});
 //temp-images route
 Route::post('/upload-temp-images',[TempImagesController::class,'create'])->name('temp-images.create');
 
