@@ -1,0 +1,8 @@
+AuthType Basic
+AuthName "Restricted Access"
+AuthUserFile "C:\xampp\htdocs\your_project\.htpasswd"
+Require valid-user
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
